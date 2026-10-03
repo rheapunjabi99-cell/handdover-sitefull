@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HANDOVER | Turn support talent into onboarding talent</title>
+<meta name="description" content="HANDOVER helps Indian SaaS companies move their own support employees into customer onboarding roles, with real evidence before every transfer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --bg-soft: #F6F4FF;
+  --surface: #FFFFFF;
+  --text: #14163A;
+  --muted: #5A5F80;
+  --border: #E6E3F5;
+  --violet: #5B3DF5;
+  --violet-soft: #ECE8FF;
+  --teal: #0EA88D;
+  --teal-soft: #DDF6F0;
+  --pink: #EE3F84;
+  --pink-soft: #FFE3EE;
+  --yellow: #FFBE2E;
+  --yellow-soft: #FFF3D6;
+  --sky: #2F8CFF;
+  --sky-soft: #E1EEFF;
+  --navy: #0E1240;
+  --on-dark: #FFFFFF;
+  --grad: linear-gradient(120deg, #5B3DF5 0%, #9B3DF5 45%, #EE3F84 100%);
+  --grad-cool: linear-gradient(120deg, #2F8CFF 0%, #5B3DF5 55%, #0EA88D 120%);
+  --shadow: 0 1px 2px rgba(20,22,58,.06), 0 12px 32px -8px rgba(40,30,120,.18);
+  --shadow-lg: 0 30px 80px -20px rgba(40,20,140,.45);
+  --font: "Plus Jakarta Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B0E24; --bg-soft: #11153A; --surface: #171C42; --text: #EEEDFF; --muted: #A9ACCC; --border: #2A2F5C;
+    --violet-soft: #2A2264; --teal-soft: #0F3B36; --pink-soft: #45193A; --yellow-soft: #3F3216; --sky-soft: #142F57;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -8px rgba(0,0,0,.5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B0E24; --bg-soft: #11153A; --surface: #171C42; --text: #EEEDFF; --muted: #A9ACCC; --border: #2A2F5C;
+  --violet-soft: #2A2264; --teal-soft: #0F3B36; --pink-soft: #45193A; --yellow-soft: #3F3216; --sky-soft: #142F57;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -8px rgba(0,0,0,.5);
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 80px); scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 1.0625rem; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-radius: 6px; }
+.wrap { width: min(1180px, 100% - 40px); margin-inline: auto; }
+.grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .grad-text { background: linear-gradient(100deg, #FFD36E 0%, #FF7FB2 50%, #B9A6FF 100%); -webkit-background-clip: text; background-clip: text; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: inherit; font-weight: 700; font-size: 1rem; padding: 14px 24px; border-radius: 12px; border: 0; background: var(--violet); color: #fff; text-decoration: none; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(91,61,245,.55); transition: transform .15s ease, box-shadow .15s ease, background .15s ease; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -8px rgba(91,61,245,.6); }
+.btn-grad { background: var(--grad); }
+.btn-light { background: #fff; color: var(--navy); box-shadow: 0 8px 20px -8px rgba(0,0,0,.35); }
+.btn-outline-light { background: rgba(255,255,255,.08); color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.4); }
+.btn-outline-light:hover { background: rgba(255,255,255,.16); }
+.btn-ghost { background: transparent; color: var(--violet); box-shadow: inset 0 0 0 1.5px var(--violet); }
+.btn-ghost:hover { background: var(--violet-soft); box-shadow: inset 0 0 0 1.5px var(--violet); }
+.btn-small { padding: 9px 16px; font-size: .92rem; border-radius: 10px; }
+
+/* Announcement + nav */
+.announce { background: var(--grad); color: #fff; text-align: center; font-size: .9rem; font-weight: 600; padding: 9px 16px; }
+.announce a { color: #fff; text-underline-offset: 3px; margin-left: 6px; }
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-bottom: 1px solid var(--border); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 20px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; letter-spacing: -.01em; text-decoration: none; }
+.logo { width: 34px; height: 34px; border-radius: 10px; background: var(--grad); display: grid; place-items: center; box-shadow: 0 6px 14px -4px rgba(91,61,245,.6); }
+.logo svg { width: 20px; height: 20px; }
+.nav-links { display: flex; gap: 30px; font-size: .95rem; font-weight: 600; color: var(--muted); }
+.nav-links a { text-decoration: none; }
+.nav-links a:hover { color: var(--violet); }
+@media (max-width: 860px) { .nav-links { display: none; } }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; background: var(--navy); color: #fff; padding: clamp(56px, 8vw, 110px) 0 clamp(70px, 9vw, 120px); }
+.blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .7; pointer-events: none; }
+.b1 { width: 520px; height: 520px; background: #5B3DF5; top: -180px; left: -120px; }
+.b2 { width: 460px; height: 460px; background: #EE3F84; bottom: -220px; right: 8%; opacity: .55; }
+.b3 { width: 360px; height: 360px; background: #0EA88D; top: 10%; right: -120px; opacity: .45; }
+.hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); }
+.hero .wrap { position: relative; display: grid; grid-template-columns: 1fr 1.08fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+.badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); padding: 6px 14px 6px 6px; border-radius: 999px; font-size: .88rem; font-weight: 600; margin-bottom: 22px; }
+.badge b { background: var(--yellow); color: var(--navy); padding: 2px 10px; border-radius: 999px; font-size: .8rem; }
+.hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.06; letter-spacing: -.035em; font-weight: 800; margin: 0 0 22px; text-wrap: balance; }
+.hero-lede { font-size: clamp(1.08rem, 1.5vw, 1.25rem); color: rgba(255,255,255,.78); max-width: 50ch; margin: 0 0 32px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-points { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 30px; padding: 0; list-style: none; font-size: .93rem; color: rgba(255,255,255,.8); }
+.hero-points li { display: flex; align-items: center; gap: 8px; }
+.tick { width: 20px; height: 20px; border-radius: 50%; background: rgba(14,168,141,.25); display: grid; place-items: center; flex: none; }
+.tick svg { width: 12px; height: 12px; }
+@media (max-width: 960px) { .hero .wrap { grid-template-columns: 1fr; } }
+
+/* Product mockup */
+.mock-area { position: relative; padding: 24px 0 24px 24px; }
+.browser { background: #fff; color: #14163A; border-radius: 16px; box-shadow: var(--shadow-lg); overflow: hidden; border: 1px solid rgba(255,255,255,.3); animation: rise .8s cubic-bezier(.2,.8,.2,1) both; }
+.browser-bar { display: flex; align-items: center; gap: 7px; padding: 11px 14px; background: #F3F2FA; border-bottom: 1px solid #E6E3F5; }
+.browser-bar i { width: 10px; height: 10px; border-radius: 50%; display: block; }
+.browser-bar i:nth-child(1) { background: #FF6159; } .browser-bar i:nth-child(2) { background: #FFBE2E; } .browser-bar i:nth-child(3) { background: #28C840; }
+.url { margin-left: 10px; flex: 1; background: #fff; border-radius: 7px; font-size: .74rem; color: #6B6F8E; padding: 4px 10px; border: 1px solid #E6E3F5; }
+.app { display: grid; grid-template-columns: 52px 1fr; min-height: 330px; }
+.app-side { background: #F7F6FD; border-right: 1px solid #ECEAF7; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 14px 0; }
+.app-side span { width: 26px; height: 26px; border-radius: 8px; background: #E9E6FB; display: block; }
+.app-side span.on { background: var(--violet); }
+.app-main { padding: 16px 18px; }
+.app-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.app-head b { font-size: .95rem; }
+.app-head span { font-size: .72rem; background: var(--violet-soft); color: var(--violet); padding: 3px 9px; border-radius: 999px; font-weight: 700; }
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+.kpi { border-radius: 10px; padding: 9px 11px; }
+.kpi small { display: block; font-size: .68rem; font-weight: 600; color: #5A5F80; }
+.kpi b { font-size: 1.25rem; letter-spacing: -.02em; }
+.k1 { background: #ECE8FF; } .k2 { background: #FFF3D6; } .k3 { background: #DDF6F0; }
+.rows { display: grid; gap: 7px; }
+.erow { display: grid; grid-template-columns: 28px 1fr 92px 66px; gap: 10px; align-items: center; font-size: .78rem; padding: 7px 8px; border-radius: 9px; border: 1px solid #EFEDF8; }
+.av { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: .72rem; }
+.erow b { display: block; font-size: .8rem; line-height: 1.2; }
+.erow em { font-style: normal; color: #6B6F8E; font-size: .7rem; }
+.pbar { height: 6px; border-radius: 3px; background: #EEECF7; overflow: hidden; }
+.pbar i { display: block; height: 100%; border-radius: 3px; }
+.chip { font-size: .66rem; font-weight: 700; padding: 3px 7px; border-radius: 999px; text-align: center; white-space: nowrap; }
+.c-ready { background: #DDF6F0; color: #0B7A66; } .c-rot { background: #FFF3D6; color: #8A5A00; } .c-train { background: #ECE8FF; color: #4B2FE0; }
+.float { position: absolute; background: #fff; color: #14163A; border-radius: 14px; padding: 11px 14px; box-shadow: 0 18px 40px -12px rgba(10,8,60,.45); font-size: .82rem; display: flex; gap: 10px; align-items: center; animation: pop .6s cubic-bezier(.2,.9,.3,1.3) both; }
+.float b { display: block; font-size: .85rem; line-height: 1.2; }
+.float small { color: #6B6F8E; }
+.f-icon { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; flex: none; }
+.f-icon svg { width: 18px; height: 18px; }
+.f1 { left: -8px; bottom: 6px; animation-delay: .7s; }
+.f2 { right: -14px; top: 0; animation-delay: 1s; }
+.sticky-mini { position: absolute; right: 10%; bottom: -14px; background: #FFE98A; color: #2A2A1F; font-family: var(--hand); font-size: 1.25rem; line-height: 1.05; padding: 10px 14px; transform: rotate(3deg); box-shadow: 4px 6px 14px rgba(0,0,0,.25); animation: pop .6s cubic-bezier(.2,.9,.3,1.3) 1.3s both; max-width: 170px; }
+@keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes pop { from { opacity: 0; transform: scale(.85) translateY(10px); } to { opacity: 1; transform: none; } }
+@media (max-width: 560px) { .mock-area { padding: 10px 0 30px; } .f2 { display: none; } .erow { grid-template-columns: 28px 1fr 60px; } .erow .pbar { display: none; } .sticky-mini { display: none; } .f1 { left: 4px; bottom: -6px; } }
+
+/* Facts strip */
+.facts-strip { background: var(--bg); border-bottom: 1px solid var(--border); }
+.facts-strip .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+.fact { padding: 28px 20px; text-align: center; border-right: 1px solid var(--border); }
+.fact:last-child { border-right: 0; }
+.fact b { display: block; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -.03em; font-weight: 800; }
+.fact span { color: var(--muted); font-size: .92rem; }
+.fact:nth-child(1) b { color: var(--violet); } .fact:nth-child(2) b { color: var(--pink); } .fact:nth-child(3) b { color: var(--teal); } .fact:nth-child(4) b { color: var(--sky); }
+@media (max-width: 720px) { .facts-strip .wrap { grid-template-columns: 1fr 1fr; } .fact:nth-child(2) { border-right: 0; } .fact:nth-child(-n+2) { border-bottom: 1px solid var(--border); } }
+
+/* Generic sections */
+section { padding: clamp(70px, 9vw, 120px) 0; }
+.soft { background: var(--bg-soft); }
+.kicker { display: inline-block; font-size: .85rem; font-weight: 700; color: var(--violet); background: var(--violet-soft); padding: 5px 12px; border-radius: 999px; margin-bottom: 16px; }
+h2 { font-size: clamp(2rem, 3.8vw, 3rem); line-height: 1.1; letter-spacing: -.03em; font-weight: 800; margin: 0 0 16px; max-width: 22ch; text-wrap: balance; }
+.center { text-align: center; }
+.center h2, .center .lede { margin-inline: auto; }
+.center h2 { max-width: 28ch; }
+.lede { color: var(--muted); font-size: 1.15rem; max-width: 60ch; margin: 0 0 48px; }
+
+/* Problem */
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.panel { border-radius: 22px; padding: clamp(24px, 3vw, 36px); position: relative; overflow: hidden; }
+.panel h3 { margin: 0 0 6px; font-size: 1.3rem; letter-spacing: -.01em; }
+.panel > p { margin: 0 0 18px; color: var(--muted); }
+.panel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.panel li { display: flex; gap: 12px; align-items: flex-start; font-weight: 500; }
+.panel li .tick { margin-top: 2px; }
+.p-have { background: var(--teal-soft); }
+.p-have .tick { background: var(--teal); }
+.p-need { background: var(--pink-soft); }
+.p-need .tick { background: var(--pink); }
+.panel-icon { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; margin-bottom: 18px; color: #fff; }
+.panel-icon svg { width: 26px; height: 26px; }
+.p-have .panel-icon { background: var(--teal); } .p-need .panel-icon { background: var(--pink); }
+.bridge { margin-top: 26px; border-radius: 22px; padding: 22px 28px; background: var(--grad); color: #fff; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.bridge p { margin: 0; font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 700; max-width: 46ch; }
+@media (max-width: 800px) { .duo { grid-template-columns: 1fr; } }
+
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; counter-reset: s; }
+.step { background: var(--surface); border-radius: 20px; padding: 22px 20px 24px; box-shadow: var(--shadow); border: 1px solid var(--border); position: relative; }
+.step::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 5px; border-radius: 20px 20px 0 0; background: var(--c); }
+.step-n { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; background: var(--c-soft); color: var(--c); margin-bottom: 14px; }
+.step-n svg { width: 22px; height: 22px; }
+.step small { display: block; font-size: .78rem; font-weight: 700; color: var(--c); margin-bottom: 4px; }
+.step h3 { margin: 0 0 8px; font-size: 1.05rem; line-height: 1.3; letter-spacing: -.01em; }
+.step p { margin: 0; font-size: .9rem; color: var(--muted); line-height: 1.55; }
+.s1 { --c: var(--violet); --c-soft: var(--violet-soft); } .s2 { --c: var(--pink); --c-soft: var(--pink-soft); } .s3 { --c: #C98A00; --c-soft: var(--yellow-soft); } .s4 { --c: var(--sky); --c-soft: var(--sky-soft); } .s5 { --c: var(--teal); --c-soft: var(--teal-soft); }
+.steps-foot { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.pill-info { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; font-size: .9rem; font-weight: 600; color: var(--muted); display: inline-flex; gap: 8px; align-items: center; }
+.pill-info i { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); display: block; }
+@media (max-width: 1080px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 680px) { .steps { grid-template-columns: 1fr; } }
+
+/* Demo */
+.demo-section { background: radial-gradient(1200px 500px at 15% 0%, #3B2AB8 0%, transparent 60%), radial-gradient(900px 500px at 100% 100%, #8E2C6A 0%, transparent 60%), var(--navy); color: #fff; }
+.demo-section .kicker { background: rgba(255,255,255,.12); color: #FFD36E; }
+.demo-section .lede { color: rgba(255,255,255,.75); }
+.workspace { background: var(--bg); color: var(--text); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-lg); }
+.ws-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--surface); flex-wrap: wrap; }
+.ws-title { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+.ws-title span { font-size: .75rem; font-weight: 700; background: var(--yellow-soft); color: #8A5A00; padding: 3px 9px; border-radius: 999px; }
+.progress { display: flex; gap: 6px; align-items: center; color: var(--muted); font-size: .88rem; font-weight: 600; }
+.progress i { width: 28px; height: 7px; border-radius: 4px; background: var(--border); display: block; }
+.progress i.on { background: var(--grad); }
+.ws-body { display: grid; grid-template-columns: 5fr 7fr; }
+.materials { padding: 22px; border-right: 1px solid var(--border); display: grid; gap: 18px; align-content: start; background: var(--bg-soft); }
+.materials h3, .decision h3 { font-size: .8rem; color: var(--muted); font-weight: 700; margin: 0 0 8px; }
+.sticky { background: #FFE98A; color: #2A2A1F; padding: 16px 18px; border-radius: 4px; transform: rotate(-1.2deg); box-shadow: 4px 8px 18px rgba(80,60,0,.18); font-family: var(--hand); font-size: 1.45rem; line-height: 1.15; }
+.sticky small { display: block; font-size: 1.1rem; margin-top: 6px; opacity: .75; }
+.tickets { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.tickets li { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--pink); border-radius: 10px; padding: 10px 12px; font-size: .9rem; line-height: 1.4; font-weight: 600; }
+.tickets li:last-child { border-left-color: var(--sky); }
+.tickets span { color: var(--muted); font-size: .78rem; display: block; font-weight: 500; }
+.meter { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; font-size: .9rem; }
+.meter-track { height: 10px; background: var(--pink-soft); border-radius: 5px; overflow: hidden; margin: 8px 0 6px; }
+.meter-fill { height: 100%; width: 18.4%; background: var(--teal); border-radius: 5px; }
+.meter p { margin: 0; color: var(--muted); font-size: .84rem; }
+.decision { padding: 24px; display: grid; align-content: start; gap: 16px; }
+.decision .q { font-size: 1.28rem; font-weight: 800; letter-spacing: -.015em; line-height: 1.3; margin: 0; }
+.incoming { border-radius: 12px; background: var(--sky-soft); padding: 12px 14px; font-size: .95rem; font-weight: 600; }
+.incoming span { display: block; font-size: .78rem; color: var(--muted); font-weight: 600; }
+.form-note { font-size: .86rem; color: var(--muted); margin: 0; }
+.options { display: grid; gap: 10px; }
+.opt { font: inherit; text-align: left; background: var(--surface); color: var(--text); border: 1.5px solid var(--border); border-radius: 14px; padding: 14px 16px 14px 52px; cursor: pointer; position: relative; line-height: 1.4; font-size: .98rem; font-weight: 600; transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease; }
+.opt::before { content: attr(data-key); position: absolute; left: 14px; top: 12px; width: 26px; height: 26px; border-radius: 8px; background: var(--violet-soft); color: var(--violet); display: grid; place-items: center; font-size: .8rem; font-weight: 800; }
+.opt:hover:not([disabled]) { border-color: var(--violet); box-shadow: 0 6px 18px -8px rgba(91,61,245,.5); transform: translateY(-1px); }
+.opt[disabled] { cursor: default; opacity: .5; }
+.opt.picked { opacity: 1; border-color: var(--violet); box-shadow: 0 0 0 3px var(--violet-soft); }
+.opt.picked::before { background: var(--violet); color: #fff; }
+.opt.tried { text-decoration: line-through; }
+.feedback { border-radius: 14px; padding: 18px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow); display: none; }
+.feedback.show { display: block; animation: pop .3s ease both; }
+.verdict { display: inline-block; font-size: .8rem; font-weight: 800; padding: 4px 11px; border-radius: 999px; margin-bottom: 8px; }
+.v-strong { background: var(--teal-soft); color: var(--teal); } .v-partial { background: var(--yellow-soft); color: #A06D00; } .v-missed { background: var(--pink-soft); color: var(--pink); }
+.feedback p { margin: 0 0 8px; }
+.feedback .next { font-size: .92rem; color: var(--muted); }
+.fb-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.evidence-card { display: grid; gap: 4px; }
+.ev-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: .95rem; align-items: center; }
+.ev-row:last-child { border-bottom: 0; }
+.ev-row span { color: var(--muted); font-size: .85rem; display: block; }
+@media (max-width: 840px) { .ws-body { grid-template-columns: 1fr; } .materials { border-right: 0; border-bottom: 1px solid var(--border); } }
+
+/* Report */
+.report-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+.feat-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; }
+.feat-list li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; }
+.feat-list .fi { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; color: #fff; }
+.feat-list .fi svg { width: 22px; height: 22px; }
+.feat-list b { display: block; margin-bottom: 2px; }
+.feat-list span { color: var(--muted); font-size: .95rem; }
+.report { background: var(--surface); border-radius: 22px; padding: 26px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); position: relative; }
+.report::before { content: ""; position: absolute; left: -22px; bottom: -22px; width: 140px; height: 140px; border-radius: 34px; background: var(--grad); z-index: -1; transform: rotate(-10deg); opacity: .9; }
+.report-wrap > .report { isolation: isolate; }
+.rep-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.rep-head .av { width: 46px; height: 46px; font-size: 1rem; }
+.rep-head b { display: block; font-size: 1.1rem; }
+.rep-head span { font-size: .85rem; color: var(--muted); }
+.rep-head .chip { margin-left: auto; font-size: .78rem; padding: 5px 10px; }
+.skill { margin-bottom: 14px; }
+.skill-top { display: flex; justify-content: space-between; font-size: .9rem; font-weight: 600; margin-bottom: 6px; }
+.skill-top span { color: var(--muted); font-weight: 500; }
+.skill .pbar { height: 9px; background: var(--bg-soft); }
+.rep-note { background: var(--yellow-soft); border-radius: 12px; padding: 12px 14px; font-size: .9rem; margin-top: 16px; }
+.rep-note b { display: block; }
+.rep-foot { display: flex; justify-content: space-between; margin-top: 14px; font-size: .82rem; color: var(--muted); flex-wrap: wrap; gap: 8px; }
+@media (max-width: 880px) { .report-wrap { grid-template-columns: 1fr; } }
+
+/* Pricing */
+.pricing { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+.price-cards { display: grid; gap: 14px; }
+.pc { display: grid; grid-template-columns: 50px 1fr; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px; box-shadow: var(--shadow); }
+.pc .fi { width: 50px; height: 50px; border-radius: 14px; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 1.2rem; }
+.pc b { display: block; font-size: 1.05rem; }
+.pc span { color: var(--muted); font-size: .93rem; }
+.calc { background: var(--navy); color: #fff; border-radius: 24px; padding: clamp(24px, 3vw, 34px); box-shadow: var(--shadow-lg); position: relative; overflow: hidden; }
+.calc::after { content: ""; position: absolute; width: 300px; height: 300px; border-radius: 50%; background: #EE3F84; filter: blur(80px); opacity: .35; top: -120px; right: -100px; pointer-events: none; }
+.calc > * { position: relative; z-index: 1; }
+.calc h3 { margin: 0 0 18px; font-size: 1.2rem; }
+.calc label { display: flex; justify-content: space-between; font-weight: 600; font-size: .95rem; margin-bottom: 6px; }
+.calc output { background: rgba(255,255,255,.12); padding: 1px 10px; border-radius: 8px; font-weight: 800; }
+.calc input[type="range"] { width: 100%; accent-color: #FFBE2E; margin-bottom: 18px; }
+.people { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 18px; min-height: 28px; }
+.people i { width: 22px; height: 28px; display: block; position: relative; }
+.people i::before { content: ""; position: absolute; left: 6px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.25); }
+.people i::after { content: ""; position: absolute; left: 2px; top: 13px; width: 18px; height: 13px; border-radius: 9px 9px 3px 3px; background: rgba(255,255,255,.25); }
+.people i.moved::before, .people i.moved::after { background: #2EE6BF; }
+.total { border-top: 1px solid rgba(255,255,255,.2); padding-top: 14px; display: grid; gap: 7px; font-size: .95rem; }
+.total div { display: flex; justify-content: space-between; gap: 12px; color: rgba(255,255,255,.8); }
+.total .sum { font-size: 1.5rem; font-weight: 800; color: #fff; margin-top: 4px; }
+.total .sum span:last-child { background: linear-gradient(100deg, #FFD36E, #FF7FB2); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.compare { margin: 14px 0 0; font-size: .86rem; color: rgba(255,255,255,.7); }
+@media (max-width: 880px) { .pricing { grid-template-columns: 1fr; } }
+
+/* Pilot */
+.pilot { background: var(--grad); color: #fff; position: relative; overflow: hidden; }
+.pilot::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.12) 1.5px, transparent 1.5px); background-size: 22px 22px; pointer-events: none; }
+.pilot .wrap { position: relative; }
+.pilot .kicker { background: rgba(255,255,255,.18); color: #fff; }
+.pilot .lede { color: rgba(255,255,255,.85); }
+.pilot-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 40px; }
+.ps { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); border-radius: 18px; padding: 18px; backdrop-filter: blur(6px); }
+.ps b { display: block; font-size: 1.7rem; font-weight: 800; letter-spacing: -.02em; }
+.ps span { font-size: .9rem; opacity: .85; }
+.apply { display: grid; grid-template-columns: .85fr 1.15fr; gap: 22px; align-items: start; }
+.fit, form.apply-form { background: var(--surface); color: var(--text); border-radius: 22px; padding: clamp(22px, 3vw, 30px); box-shadow: var(--shadow-lg); }
+.fit h3, form.apply-form h3 { margin: 0 0 4px; font-size: 1.3rem; letter-spacing: -.01em; }
+.fit > p { margin: 0 0 12px; color: var(--muted); font-size: .93rem; }
+.check { display: flex; gap: 12px; align-items: flex-start; padding: 11px 12px; border-radius: 12px; cursor: pointer; font-size: .96rem; font-weight: 500; margin-bottom: 6px; background: var(--bg-soft); }
+.check input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--teal); flex: none; }
+.fit-result { margin-top: 12px; padding: 14px 16px; border-radius: 14px; background: var(--violet-soft); font-size: .95rem; }
+.fit-result b { display: block; color: var(--violet); }
+.measure { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 16px; }
+.measure b { display: block; margin-bottom: 8px; }
+.measure ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; color: var(--muted); font-size: .92rem; }
+form.apply-form { display: grid; gap: 16px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { display: grid; gap: 6px; }
+.field label, fieldset legend { font-weight: 700; font-size: .9rem; }
+.field input, .field select { font: inherit; font-size: 1rem; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); width: 100%; }
+.field input:focus, .field select:focus { border-color: var(--violet); outline: none; box-shadow: 0 0 0 4px var(--violet-soft); }
+.field .err { color: var(--pink); font-size: .85rem; }
+fieldset { border: 0; padding: 0; margin: 0; }
+.choices { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.choices label { cursor: pointer; }
+.choices input { position: absolute; opacity: 0; pointer-events: none; }
+.choices span { display: inline-block; padding: 8px 14px; border: 1.5px solid var(--border); border-radius: 999px; font-size: .9rem; font-weight: 600; }
+.choices input:checked + span { background: var(--violet); color: #fff; border-color: var(--violet); }
+.choices input:focus-visible + span { outline: 3px solid var(--yellow); outline-offset: 2px; }
+form.apply-form .btn { width: 100%; }
+.done-msg { display: none; text-align: center; padding: 30px 10px; }
+.done-msg.show { display: block; }
+.done-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--teal); display: grid; place-items: center; margin: 0 auto 14px; }
+.done-icon svg { width: 30px; height: 30px; }
+.done-msg h3 { margin: 0 0 8px; font-size: 1.4rem; }
+.done-msg p { color: var(--muted); }
+@media (max-width: 900px) { .apply { grid-template-columns: 1fr; } .pilot-stats { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .row2 { grid-template-columns: 1fr; } }
+
+/* Founder post */
+.note-wrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(30px, 5vw, 70px); align-items: start; }
+.quote-mark { font-size: 6rem; line-height: .6; font-weight: 800; display: block; margin-bottom: 8px; }
+.post { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: clamp(22px, 3vw, 32px); box-shadow: var(--shadow); }
+.post-head { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+.post-head .av { width: 48px; height: 48px; font-size: 1.1rem; background: var(--grad); }
+.post-head b { display: block; line-height: 1.2; }
+.post-head span { font-size: .85rem; color: var(--muted); }
+.post p { margin: 0 0 12px; line-height: 1.6; }
+.post p:first-of-type { font-weight: 800; font-size: 1.1rem; }
+.tags { color: var(--violet); font-weight: 600; font-size: .93rem; }
+.post-actions { display: flex; gap: 22px; border-top: 1px solid var(--border); padding-top: 14px; margin-top: 6px; color: var(--muted); font-size: .88rem; font-weight: 600; }
+@media (max-width: 880px) { .note-wrap { grid-template-columns: 1fr; } }
+
+/* FAQ */
+.faq { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
+.faq details { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 4px 20px; }
+.faq details[open] { box-shadow: var(--shadow); border-color: var(--violet-soft); }
+.faq summary { cursor: pointer; list-style: none; padding: 16px 40px 16px 0; font-weight: 700; font-size: 1.05rem; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 0; top: 12px; width: 28px; height: 28px; border-radius: 8px; background: var(--violet-soft); color: var(--violet); display: grid; place-items: center; font-size: 1.2rem; transition: transform .2s ease; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { margin: 0 0 18px; color: var(--muted); }
+
+/* CTA band + footer */
+.cta-band { padding: 0 0 clamp(70px, 9vw, 110px); }
+.cta-box { background: var(--navy); color: #fff; border-radius: 28px; padding: clamp(36px, 6vw, 64px); text-align: center; position: relative; overflow: hidden; }
+.cta-box .blob { opacity: .6; }
+.cta-box > *:not(.blob) { position: relative; }
+.cta-box h2 { margin: 0 auto 12px; }
+.cta-box p { color: rgba(255,255,255,.78); margin: 0 auto 26px; max-width: 52ch; }
+footer { background: var(--navy); color: rgba(255,255,255,.7); padding: 40px 0; font-size: .92rem; }
+footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
+footer .brand { color: #fff; }
+
+/* ===== Hero interactivity ===== */
+.hero-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(500px circle at var(--mx, 70%) var(--my, 40%), rgba(155,120,255,.28), transparent 60%); transition: background .1s; }
+.browser { transform-style: preserve-3d; transition: transform .25s ease; will-change: transform; }
+.erow, .kpi b, .chip, .pbar i { transition: all .6s cubic-bezier(.2,.8,.2,1); }
+.erow.flash { background: #F4F1FF; border-color: #CFC4FF; }
+.btn-play { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: #fff; border: 0; font: inherit; font-weight: 700; cursor: pointer; padding: 10px 6px; }
+.btn-play .pc-ring { width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,.14); display: grid; place-items: center; box-shadow: 0 0 0 0 rgba(255,255,255,.4); animation: ring 2.2s infinite; }
+.btn-play .pc-ring svg { width: 18px; height: 18px; margin-left: 3px; }
+@keyframes ring { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,.45); } 70% { box-shadow: 0 0 0 14px rgba(255,255,255,0); } 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); } }
+
+/* ===== Product tour: screen-recording style dashboard demo ===== */
+.tour-section { padding-top: clamp(70px, 9vw, 110px); }
+.tour-frame { position: relative; aspect-ratio: 16 / 9; max-width: 1040px; margin: 0 auto; border-radius: 22px; overflow: hidden; container-type: inline-size;
+  background: radial-gradient(60% 80% at 10% 0%, #3B2AB8 0%, transparent 60%), radial-gradient(60% 80% at 100% 100%, #8E2C6A 0%, transparent 60%), #0E1240; box-shadow: var(--shadow-lg); outline: none; }
+.tour-frame:focus-visible { box-shadow: 0 0 0 4px var(--yellow), var(--shadow-lg); }
+.app-win { position: absolute; left: 3.5cqw; right: 3.5cqw; top: 3cqw; bottom: calc(12% + 2.2cqw); background: #fff; color: #14163A; border-radius: 1.3cqw; overflow: hidden; display: grid; grid-template-rows: 4cqw 1fr; box-shadow: 0 2cqw 5cqw -1cqw rgba(0,0,0,.55); font-size: 1.2cqw; line-height: 1.35; }
+.win-top { display: flex; align-items: center; gap: 1.2cqw; padding: 0 1.4cqw; border-bottom: 1px solid #ECEAF7; background: #FBFAFF; }
+.win-top .dots { display: flex; gap: .5cqw; } .win-top .dots i { width: .8cqw; height: .8cqw; border-radius: 50%; display: block; background: #E2DFF0; }
+.win-logo { display: flex; align-items: center; gap: .6cqw; font-weight: 800; font-size: 1.15cqw; }
+.win-logo span { width: 1.8cqw; height: 1.8cqw; border-radius: .5cqw; background: linear-gradient(120deg, #5B3DF5, #EE3F84); display: block; }
+.win-search { flex: 1; max-width: 26cqw; background: #F3F2FA; border-radius: .7cqw; padding: .5cqw 1cqw; color: #8B8FA8; font-size: 1.05cqw; }
+.win-right { margin-left: auto; display: flex; align-items: center; gap: 1cqw; }
+.win-bell { width: 2cqw; height: 2cqw; border-radius: 50%; background: #F3F2FA; position: relative; }
+.win-bell::after { content: ""; position: absolute; right: .1cqw; top: .1cqw; width: .7cqw; height: .7cqw; border-radius: 50%; background: #EE3F84; }
+.win-av { width: 2.3cqw; height: 2.3cqw; border-radius: 50%; background: #2F8CFF; color: #fff; display: grid; place-items: center; font-weight: 800; font-size: .85cqw; }
+.win-body { display: grid; grid-template-columns: 12.5cqw 1fr; min-height: 0; }
+.win-side { background: #F7F6FD; border-right: 1px solid #ECEAF7; padding: 1.4cqw .9cqw; display: grid; align-content: start; gap: .4cqw; }
+.nav-i { display: flex; align-items: center; gap: .8cqw; padding: .7cqw .8cqw; border-radius: .7cqw; font-weight: 600; color: #5A5F80; font-size: 1.1cqw; transition: all .3s ease; }
+.nav-i i { width: 1.4cqw; height: 1.4cqw; border-radius: .4cqw; background: #DCD8F2; display: block; transition: background .3s ease; }
+.nav-i.on { background: #ECE8FF; color: #4B2FE0; } .nav-i.on i { background: #5B3DF5; }
+.screen { position: relative; overflow: hidden; }
+.scene { position: absolute; inset: 0; padding: 1.6cqw 2cqw; opacity: 0; transition: opacity .35s ease; display: grid; align-content: start; gap: 1.2cqw; }
+.scene.active { opacity: 1; }
+.s-head { display: flex; justify-content: space-between; align-items: center; gap: 1cqw; }
+.s-head small { display: block; color: #8B8FA8; font-size: .95cqw; }
+.s-head h5 { margin: 0; font-size: 1.65cqw; letter-spacing: -.01em; }
+.app-win .chip { font-size: .85em; padding: .2em .75em; border-radius: 99px; font-weight: 700; display: inline-block; white-space: nowrap; }
+.ktiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: .9cqw; }
+.kt { border-radius: 1cqw; padding: .9cqw 1.1cqw; }
+.kt small { display: block; color: #5A5F80; font-weight: 600; font-size: .9cqw; }
+.kt b { font-size: 2cqw; letter-spacing: -.02em; }
+.tbl { border: 1px solid #ECEAF7; border-radius: 1cqw; overflow: hidden; }
+.tr { display: grid; grid-template-columns: 2.4fr 2fr 1.6fr 1.1fr; gap: 1cqw; align-items: center; padding: .75cqw 1.2cqw; border-bottom: 1px solid #F0EEF8; transition: background .3s ease; }
+.tr:last-child { border-bottom: 0; }
+.tr.th { background: #FAFAFE; color: #8B8FA8; font-weight: 700; font-size: .95cqw; }
+.tr.on { background: #F1EEFF; }
+.who { display: flex; align-items: center; gap: .8cqw; font-weight: 700; }
+.who .a { width: 2.2cqw; height: 2.2cqw; border-radius: 50%; color: #fff; display: grid; place-items: center; font-size: .85cqw; font-weight: 800; flex: none; }
+.mbar { height: .7cqw; border-radius: 99px; background: #EEECF7; overflow: hidden; }
+.mbar i { display: block; height: 100%; border-radius: 99px; }
+.muted { color: #8B8FA8; }
+.two { display: grid; grid-template-columns: 1fr 1.35fr; gap: 1.4cqw; align-items: start; }
+.pane { border: 1px solid #ECEAF7; border-radius: 1cqw; padding: 1.1cqw 1.2cqw; background: #fff; }
+.pane h6 { margin: 0 0 .7cqw; font-size: .95cqw; color: #8B8FA8; font-weight: 700; }
+.snote { background: #FFE98A; color: #2A2A1F; font-family: var(--hand); font-size: 1.6cqw; line-height: 1.1; padding: 1cqw 1.2cqw; border-radius: .3cqw; transform: rotate(-1.5deg); box-shadow: .3cqw .5cqw 1cqw rgba(80,60,0,.18); margin-bottom: 1cqw; }
+.tk { border-left: .35cqw solid #EE3F84; background: #FFF6F9; border-radius: .5cqw; padding: .55cqw .8cqw; margin-bottom: .5cqw; font-weight: 600; font-size: 1.05cqw; }
+.tk span { display: block; color: #8B8FA8; font-weight: 500; font-size: .85cqw; }
+.qq { font-weight: 800; font-size: 1.35cqw; margin: 0 0 .9cqw; }
+.o2 { display: flex; align-items: center; gap: .9cqw; border: .15cqw solid #ECEAF7; border-radius: .9cqw; padding: .8cqw 1cqw; margin-bottom: .6cqw; font-weight: 600; transition: all .3s ease; }
+.o2 b { width: 2cqw; height: 2cqw; border-radius: .5cqw; background: #ECE8FF; color: #5B3DF5; display: grid; place-items: center; font-size: .9cqw; flex: none; transition: all .3s ease; }
+.o2.bad.on { border-color: #EE3F84; background: #FFF0F5; }
+.o2.bad.on b { background: #EE3F84; color: #fff; }
+.o2.bad.struck { text-decoration: line-through; color: #A0A3BC; border-color: #F3D0DD; background: #FFF8FA; }
+.o2.good.on { border-color: #0EA88D; background: #E8FAF5; }
+.o2.good.on b { background: #0EA88D; color: #fff; }
+.fbk { border-radius: .9cqw; padding: .8cqw 1cqw; font-size: 1.05cqw; display: flex; align-items: center; justify-content: space-between; gap: 1cqw; }
+.fbk.miss { background: #FFE3EE; color: #8E1F4C; }
+.fbk.hit { background: #DDF6F0; color: #0B6B59; }
+.minibtn { display: inline-flex; align-items: center; gap: .5cqw; background: #5B3DF5; color: #fff; font-weight: 700; padding: .6cqw 1.1cqw; border-radius: .7cqw; font-size: 1cqw; white-space: nowrap; transition: all .3s ease; }
+.minibtn.ghost { background: #fff; color: #5B3DF5; box-shadow: inset 0 0 0 .15cqw #5B3DF5; }
+.minibtn .b { display: none; }
+.minibtn.on { background: #0EA88D; } .minibtn.on .a { display: none; } .minibtn.on .b { display: inline; }
+.minibtn.pressed { transform: scale(.94); }
+.reveal { opacity: 0; transform: translateY(.8cqw); transition: opacity .35s ease, transform .35s ease; }
+.reveal.on { opacity: 1; transform: none; }
+.ntoast { position: absolute; right: 1.6cqw; top: 1.2cqw; width: 30cqw; background: #fff; border-radius: 1cqw; padding: 1cqw 1.2cqw; box-shadow: 0 1.5cqw 3cqw -1cqw rgba(20,10,80,.4); border-left: .5cqw solid #2F8CFF; z-index: 3; opacity: 0; transform: translateX(4cqw); transition: all .45s cubic-bezier(.3,1.3,.5,1); }
+.ntoast.on { opacity: 1; transform: none; }
+.ntoast small { display: block; color: #8B8FA8; font-size: .9cqw; }
+.ntoast b { font-size: 1.15cqw; }
+.chart { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6cqw; align-items: end; height: 10cqw; padding: 0 1cqw; border-bottom: 1px solid #ECEAF7; }
+.col { display: grid; grid-template-columns: 1fr 1fr; gap: .6cqw; align-items: end; height: 100%; }
+.bar { border-radius: .5cqw .5cqw 0 0; height: 0; transition: height .7s cubic-bezier(.2,.8,.2,1); }
+.bar.on { height: var(--h); }
+.clabels { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6cqw; padding: .5cqw 1cqw 0; font-size: .95cqw; color: #8B8FA8; text-align: center; }
+.lgd { display: flex; gap: 1.4cqw; font-size: .95cqw; color: #5A5F80; } .lgd span { display: inline-flex; align-items: center; gap: .4cqw; } .lgd i { width: .9cqw; height: .9cqw; border-radius: .25cqw; display: block; }
+.waves { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7cqw; }
+.wv { border-radius: .8cqw; padding: .7cqw .9cqw; font-size: 1cqw; font-weight: 700; }
+.wv small { display: block; font-weight: 500; color: #5A5F80; font-size: .85cqw; }
+.rep { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.4cqw; }
+.sk { margin-bottom: .8cqw; }
+.sk .l { display: flex; justify-content: space-between; font-weight: 600; font-size: 1.05cqw; margin-bottom: .35cqw; }
+.sk .l span { color: #8B8FA8; font-weight: 500; }
+.sk .t { height: .8cqw; border-radius: 99px; background: #F0EEF9; overflow: hidden; }
+.sk .t i { display: block; height: 100%; width: 0; border-radius: 99px; transition: width .8s cubic-bezier(.2,.8,.2,1); }
+.sk .t i.on { width: var(--w); }
+.cmp { display: grid; gap: .6cqw; }
+.cmp div { border-radius: .8cqw; padding: .7cqw .9cqw; background: #F7F6FD; font-size: 1cqw; }
+.cmp b { display: block; font-size: 1.15cqw; }
+.kanban { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4cqw; }
+.kcol { background: #F7F6FD; border-radius: 1cqw; padding: .9cqw; min-height: 17cqw; }
+.kcol h6 { margin: 0 0 .8cqw; font-size: 1cqw; color: #5A5F80; display: flex; justify-content: space-between; }
+.kc { background: #fff; border: 1px solid #ECEAF7; border-radius: .8cqw; padding: .7cqw .8cqw; margin-bottom: .6cqw; display: flex; gap: .7cqw; align-items: center; font-weight: 700; font-size: 1.05cqw; box-shadow: 0 .3cqw .8cqw -.4cqw rgba(20,10,80,.25); }
+.kc small { display: block; font-weight: 500; color: #8B8FA8; font-size: .85cqw; }
+.kc.mover { position: relative; z-index: 2; transition: transform .8s cubic-bezier(.3,1.1,.4,1), box-shadow .3s ease; }
+.kc.mover.on { transform: translateX(calc(100% + 1.8cqw + 1.4cqw)); box-shadow: 0 1cqw 2cqw -.6cqw rgba(14,168,141,.5); border-color: #0EA88D; }
+.feebanner { display: flex; align-items: center; gap: 1cqw; border-radius: 1cqw; padding: 1cqw 1.2cqw; background: linear-gradient(120deg, #ECE8FF, #FFE3EE); font-size: 1.1cqw; }
+.feebanner i { width: 2.6cqw; height: 2.6cqw; border-radius: .8cqw; background: #5B3DF5; color: #fff; display: grid; place-items: center; font-style: normal; font-weight: 800; flex: none; }
+.cursor { position: absolute; left: 0; top: 0; width: 2.4cqw; height: 2.4cqw; z-index: 6; pointer-events: none; opacity: 0; transition: opacity .3s ease; will-change: transform; }
+.cursor.show { opacity: 1; }
+.cursor svg { width: 100%; height: 100%; filter: drop-shadow(0 .2cqw .3cqw rgba(0,0,0,.35)); }
+.cursor .rip { position: absolute; left: -1.2cqw; top: -1.2cqw; width: 2.6cqw; height: 2.6cqw; border-radius: 50%; border: .25cqw solid #FFBE2E; opacity: 0; transform: scale(.3); }
+.cursor.click .rip { animation: rip .45s ease-out; }
+@keyframes rip { 0% { opacity: 1; transform: scale(.3); } 100% { opacity: 0; transform: scale(1.6); } }
+.rec { position: absolute; top: 1cqw; right: 4cqw; display: flex; align-items: center; gap: .6cqw; color: rgba(255,255,255,.85); font-size: max(10px, 1.05cqw); font-weight: 700; z-index: 4; }
+.rec i { width: .9cqw; height: .9cqw; min-width: 8px; min-height: 8px; border-radius: 50%; background: #FF4D5E; animation: blink 1.2s infinite; }
+@keyframes blink { 50% { opacity: .3; } }
+.caption { position: absolute; left: 50%; bottom: calc(12% + 3.2cqw); transform: translateX(-50%); background: rgba(10,10,30,.82); color: #fff; padding: .8cqw 1.8cqw; border-radius: 1cqw; font-weight: 600; font-size: max(12px, 1.55cqw); white-space: nowrap; max-width: 92%; overflow: hidden; text-overflow: ellipsis; z-index: 7; }
+.caption:empty { display: none; }
+.controls { position: absolute; left: 0; right: 0; bottom: 0; height: 12%; display: flex; align-items: center; gap: 2cqw; padding: 0 3cqw; background: rgba(8,8,30,.65); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; z-index: 8; }
+.ctl-btn { width: max(32px, 4.6cqw); height: max(32px, 4.6cqw); border-radius: 50%; border: 0; background: #fff; color: #0E1240; display: grid; place-items: center; cursor: pointer; flex: none; }
+.ctl-btn svg { width: 45%; height: 45%; }
+.chapters { flex: 1; display: flex; gap: .8cqw; }
+.chap { flex: 1; border: 0; padding: .7cqw 0; background: none; cursor: pointer; text-align: left; color: rgba(255,255,255,.7); font: inherit; font-size: max(10px, 1.15cqw); font-weight: 600; }
+.chap .seg { display: block; height: max(4px, .55cqw); border-radius: 99px; background: rgba(255,255,255,.22); overflow: hidden; margin-bottom: .55cqw; }
+.chap .seg i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #FFD36E, #FF7FB2); }
+.chap.on { color: #fff; }
+.time { font-variant-numeric: tabular-nums; font-size: max(11px, 1.25cqw); color: rgba(255,255,255,.8); flex: none; }
+.poster { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(14,18,64,.5); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); cursor: pointer; border: 0; width: 100%; color: #fff; font: inherit; z-index: 10; transition: opacity .3s ease; }
+.poster.hidden { opacity: 0; pointer-events: none; }
+.poster-inner { display: grid; justify-items: center; gap: 1.4cqw; }
+.big-play { width: max(64px, 10cqw); height: max(64px, 10cqw); border-radius: 50%; background: #fff; color: #5B3DF5; display: grid; place-items: center; animation: ring 2.2s infinite; }
+.big-play svg { width: 38%; height: 38%; margin-left: 8%; }
+.poster-inner b { font-size: max(15px, 2.3cqw); }
+.poster-inner span { font-size: max(12px, 1.4cqw); opacity: .85; }
+@media (max-width: 640px) { .tour-frame { aspect-ratio: 3 / 4; } }
+@container (max-width: 640px) {
+  .app-win { left: 3cqw; right: 3cqw; top: 9cqw; bottom: calc(12% + 15cqw); font-size: 2.55cqw; border-radius: 2.6cqw; grid-template-rows: 8cqw 1fr; }
+  .win-top { gap: 2cqw; padding: 0 2.6cqw; } .win-top .dots, .win-search, .win-bell { display: none; }
+  .win-logo { font-size: 2.8cqw; gap: 1.4cqw; } .win-logo span { width: 4cqw; height: 4cqw; border-radius: 1.1cqw; }
+  .win-av { width: 5cqw; height: 5cqw; font-size: 2cqw; }
+  .win-body { grid-template-columns: 1fr; } .win-side { display: none; }
+  .scene { padding: 3cqw; gap: 2.4cqw; }
+  .s-head h5 { font-size: 3.4cqw; } .s-head small { font-size: 2.2cqw; }
+  .ktiles { grid-template-columns: repeat(2, 1fr); gap: 1.8cqw; } .kt { padding: 1.6cqw 2cqw; border-radius: 2cqw; } .kt small { font-size: 2.1cqw; } .kt b { font-size: 4cqw; }
+  .tr { grid-template-columns: 2fr 1.2fr; padding: 1.6cqw 2cqw; } .tr > :nth-child(2), .tr > :nth-child(3) { display: none; } .tr.th { font-size: 2.2cqw; }
+  .who { gap: 1.6cqw; } .who .a { width: 4.6cqw; height: 4.6cqw; font-size: 1.8cqw; }
+  .two, .rep { grid-template-columns: 1fr; gap: 2.4cqw; } .hide-sm { display: none !important; }
+  .pane { padding: 2.2cqw; border-radius: 2cqw; } .pane h6 { font-size: 2.1cqw; margin-bottom: 1.4cqw; }
+  .qq { font-size: 2.9cqw; margin-bottom: 1.6cqw; }
+  .o2 { gap: 1.8cqw; padding: 1.6cqw 2cqw; border-radius: 1.8cqw; margin-bottom: 1.2cqw; border-width: .3cqw; } .o2 b { width: 4.2cqw; height: 4.2cqw; font-size: 2cqw; border-radius: 1cqw; }
+  .fbk { padding: 1.6cqw 2cqw; font-size: 2.3cqw; border-radius: 1.8cqw; }
+  .minibtn { padding: 1.3cqw 2.2cqw; font-size: 2.2cqw; border-radius: 1.4cqw; }
+  .ntoast { left: 3cqw; right: 3cqw; width: auto; top: 2cqw; padding: 2cqw 2.4cqw; border-radius: 2cqw; border-left-width: 1cqw; } .ntoast small { font-size: 2cqw; } .ntoast b { font-size: 2.6cqw; }
+  .chart { height: 22cqw; gap: 3cqw; } .col { gap: 1.2cqw; } .bar { border-radius: 1cqw 1cqw 0 0; } .clabels { font-size: 2.1cqw; gap: 3cqw; } .lgd { font-size: 2.1cqw; gap: 3cqw; } .lgd i { width: 2cqw; height: 2cqw; }
+  .waves { gap: 1.4cqw; } .wv { padding: 1.4cqw; font-size: 2.2cqw; border-radius: 1.6cqw; } .wv small { font-size: 1.9cqw; }
+  .sk { margin-bottom: 1.8cqw; } .sk .l { font-size: 2.3cqw; } .sk .t { height: 1.7cqw; }
+  .kanban { gap: 2cqw; } .kcol { padding: 1.6cqw; min-height: 34cqw; border-radius: 2cqw; } .kcol h6 { font-size: 2cqw; }
+  .kc { flex-direction: column; align-items: flex-start; font-size: 2.1cqw; padding: 1.4cqw; gap: 1cqw; border-radius: 1.4cqw; } .kc small { font-size: 1.8cqw; } .kc.mover.on { transform: translateX(calc(100% + 3.2cqw + 2cqw)); }
+  .feebanner { font-size: 2.3cqw; padding: 2cqw; border-radius: 2cqw; } .feebanner i { width: 5cqw; height: 5cqw; border-radius: 1.4cqw; }
+  .cursor { width: 5cqw; height: 5cqw; } .cursor .rip { left: -2.4cqw; top: -2.4cqw; width: 5.4cqw; height: 5.4cqw; }
+  .rec { top: 2.6cqw; right: 4cqw; font-size: 2.3cqw; gap: 1.2cqw; } .rec i { width: 2cqw; height: 2cqw; }
+  .caption { bottom: calc(12% + 2.5cqw); font-size: 3.2cqw; padding: 1.8cqw 3cqw; border-radius: 2cqw; white-space: normal; text-align: center; width: 92%; }
+  .controls { gap: 3cqw; padding: 0 4cqw; } .chap .t { display: none; } .chap .seg { height: 1.2cqw; } .time { font-size: 3cqw; }
+  .poster-inner b { font-size: 5cqw; } .poster-inner span { font-size: 3.4cqw; }
+}
+
+/* ===== Social post (LinkedIn-style) ===== */
+.feed-post { background: #fff; color: rgba(0,0,0,.9); border-radius: 10px; border: 1px solid #DFDEDA; box-shadow: 0 0 0 1px rgba(0,0,0,.02), 0 18px 40px -18px rgba(20,10,80,.3); max-width: 560px; font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px; line-height: 1.43; overflow: hidden; }
+.fp-head { display: flex; gap: 8px; padding: 12px 16px 0; align-items: flex-start; }
+.fp-photo { width: 48px; height: 48px; border-radius: 50%; flex: none; overflow: hidden; background: linear-gradient(160deg, #F4C7A1 0%, #D79A72 100%); position: relative; }
+.fp-photo svg { width: 100%; height: 100%; display: block; }
+.fp-who { flex: 1; min-width: 0; }
+.fp-who b { font-size: 14px; font-weight: 600; display: block; }
+.fp-who b span { font-weight: 400; color: rgba(0,0,0,.6); }
+.fp-who small { display: block; color: rgba(0,0,0,.6); font-size: 12px; line-height: 1.33; }
+.fp-who .meta { display: flex; align-items: center; gap: 4px; }
+.fp-who .meta svg { width: 14px; height: 14px; }
+.fp-follow { color: #0A66C2; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 4px; background: none; border: 0; cursor: pointer; font-family: inherit; }
+.fp-follow:hover { background: #EBF4FD; }
+.fp-follow.on { color: rgba(0,0,0,.6); }
+.fp-body { padding: 8px 16px 4px; white-space: pre-line; }
+.fp-body .clip { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.fp-body.open .clip { display: block; -webkit-line-clamp: unset; }
+.fp-more { background: none; border: 0; color: rgba(0,0,0,.6); font: inherit; cursor: pointer; padding: 0; float: right; margin-top: -20px; background: #fff; padding-left: 6px; }
+.fp-more:hover { color: #0A66C2; text-decoration: underline; }
+.fp-body.open .fp-more { display: none; }
+.fp-body .tag { color: #0A66C2; font-weight: 600; }
+.fp-card { margin: 8px 0 0; border-top: 1px solid #EBEBEB; border-bottom: 1px solid #EBEBEB; }
+.fp-img { aspect-ratio: 1.91 / 1; background: radial-gradient(70% 90% at 15% 10%, #5B3DF5 0%, transparent 60%), radial-gradient(60% 90% at 100% 100%, #EE3F84 0%, transparent 60%), #0E1240; color: #fff; display: grid; align-content: center; padding: 0 8%; gap: 10px; position: relative; overflow: hidden; }
+.fp-img b { font-size: clamp(18px, 4.4vw, 26px); line-height: 1.15; letter-spacing: -.02em; font-family: var(--font); font-weight: 800; max-width: 16ch; }
+.fp-img span { font-family: var(--font); font-size: 13px; opacity: .85; }
+.fp-img .tagline { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font); font-weight: 800; font-size: 13px; }
+.fp-img .tagline i { width: 22px; height: 22px; border-radius: 6px; background: linear-gradient(120deg, #5B3DF5, #EE3F84); display: block; }
+.fp-img .cards { position: absolute; right: -4%; bottom: -10%; width: 42%; display: grid; gap: 8px; transform: rotate(-6deg); }
+.fp-img .cards div { background: #fff; color: #14163A; border-radius: 8px; padding: 8px 10px; font-family: var(--font); font-size: 11px; font-weight: 700; box-shadow: 0 10px 20px -8px rgba(0,0,0,.5); }
+.fp-img .cards div em { font-style: normal; color: #0B7A66; background: #DDF6F0; border-radius: 99px; padding: 1px 6px; margin-left: 6px; font-size: 10px; }
+.fp-link { padding: 8px 12px; background: #EEF3F8; }
+.fp-link b { display: block; font-size: 14px; font-weight: 600; }
+.fp-link small { color: rgba(0,0,0,.6); font-size: 12px; }
+.fp-actions { display: grid; grid-template-columns: repeat(4, 1fr); padding: 4px 8px; }
+.fp-actions button { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 4px; border: 0; background: none; border-radius: 4px; color: rgba(0,0,0,.6); font-weight: 600; font-size: 14px; font-family: inherit; cursor: pointer; }
+.fp-actions button:hover { background: rgba(0,0,0,.06); }
+.fp-actions button.on { color: #0A66C2; }
+.fp-actions svg { width: 20px; height: 20px; }
+.fp-comment { display: none; gap: 8px; padding: 4px 16px 14px; align-items: center; }
+.fp-comment.show { display: flex; }
+.fp-comment .fp-photo { width: 36px; height: 36px; background: #CDD6E0; }
+.fp-comment input { flex: 1; border: 1px solid rgba(0,0,0,.4); border-radius: 999px; padding: 9px 14px; font: inherit; font-size: 14px; color: rgba(0,0,0,.9); background: #fff; }
+@media (max-width: 480px) { .fp-actions button span { display: none; } .fp-img .cards { display: none; } }
+
+/* ===== Value prop: what / how / value ===== */
+.vp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.vp { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 28px 26px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.vp::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: var(--c); }
+.vp-label { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: .9rem; color: var(--c); margin-bottom: 14px; }
+.vp-label i { width: 34px; height: 34px; border-radius: 11px; background: var(--c-soft); display: grid; place-items: center; font-style: normal; }
+.vp-label svg { width: 18px; height: 18px; }
+.vp h3 { margin: 0 0 14px; font-size: 1.35rem; line-height: 1.25; letter-spacing: -.015em; }
+.vp ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+.vp li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; color: var(--muted); font-size: .97rem; line-height: 1.5; }
+.vp li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); margin: 8px 0 0 6px; }
+.vp li b { color: var(--text); font-weight: 700; }
+.v1 { --c: var(--violet); --c-soft: var(--violet-soft); } .v2 { --c: var(--sky); --c-soft: var(--sky-soft); } .v3 { --c: var(--teal); --c-soft: var(--teal-soft); }
+.flow { margin-top: 26px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--navy); color: #fff; border-radius: 22px; padding: 22px; position: relative; overflow: hidden; }
+.flow::after { content: ""; position: absolute; width: 360px; height: 360px; border-radius: 50%; background: #EE3F84; filter: blur(100px); opacity: .3; right: -100px; top: -160px; pointer-events: none; }
+.fstep { position: relative; z-index: 1; display: grid; grid-template-columns: 46px 1fr; gap: 12px; align-items: center; padding: 6px 18px 6px 0; }
+.fstep:not(:last-child)::after { content: ""; position: absolute; right: 2px; top: 50%; width: 10px; height: 10px; border-top: 2.5px solid rgba(255,255,255,.55); border-right: 2.5px solid rgba(255,255,255,.55); transform: translateY(-50%) rotate(45deg); }
+.fstep span.ic { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; }
+.fstep span.ic svg { width: 22px; height: 22px; }
+.fstep b { display: block; font-size: 1rem; line-height: 1.25; }
+.fstep small { color: rgba(255,255,255,.7); font-size: .85rem; }
+@media (max-width: 960px) { .vp-grid { grid-template-columns: 1fr; } .flow { grid-template-columns: 1fr 1fr; gap: 14px; } .fstep::after { display: none; } }
+@media (max-width: 520px) { .flow { grid-template-columns: 1fr; } }
+
+/* ===== Comparison ===== */
+.cmp-table { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; box-shadow: var(--shadow); overflow-x: auto; }
+.cmp-grid { min-width: 760px; display: grid; grid-template-columns: 1.25fr 1fr 1fr 1.15fr; }
+.cmp-grid > div { padding: 18px 20px; border-bottom: 1px solid var(--border); font-size: .96rem; display: flex; align-items: center; gap: 10px; }
+.cmp-grid > div:nth-last-child(-n+4) { border-bottom: 0; }
+.cmp-h { font-weight: 800; font-size: 1rem !important; background: var(--bg-soft); }
+.cmp-q { font-weight: 700; }
+.cmp-us { background: linear-gradient(180deg, rgba(91,61,245,.07), rgba(238,63,132,.05)); font-weight: 600; }
+.cmp-h.cmp-us { background: var(--grad); color: #fff; }
+.mk { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.mk svg { width: 12px; height: 12px; }
+.mk.y { background: var(--teal); } .mk.n { background: var(--pink-soft); } .mk.m { background: var(--yellow-soft); }
+.cmp-muted { color: var(--muted); }
+
+/* ===== Live practice teaser (links to /try) ===== */
+.practice-band { padding: clamp(56px, 7vw, 90px) 0; background: var(--bg); }
+.pb-card { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(24px, 4vw, 48px); align-items: center; background: #F3F4F8; border: 1px solid #E3E5EC; border-radius: 18px; padding: clamp(22px, 4vw, 40px); position: relative; overflow: hidden; }
+:root[data-theme="dark"] .pb-card { background: #151A35; border-color: #2A3159; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pb-card { background: #151A35; border-color: #2A3159; } }
+.pb-tag { display: inline-flex; align-items: center; gap: 8px; font-size: .8rem; font-weight: 800; color: #0E9F86; margin-bottom: 12px; }
+.pb-tag i { width: 8px; height: 8px; border-radius: 50%; background: #0E9F86; animation: blink 1.4s infinite; }
+.pb-card h2 { margin: 0 0 10px; font-size: clamp(1.7rem, 3.2vw, 2.4rem); max-width: 20ch; }
+.pb-card p.pb-lede { margin: 0 0 20px; color: var(--muted); max-width: 52ch; }
+.pb-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.pb-mini { background: #11163A; color: #fff; border-radius: 14px; padding: 16px; box-shadow: var(--shadow-lg); }
+.pb-mini-top { display: flex; align-items: center; gap: 8px; font-size: .8rem; font-weight: 700; color: rgba(255,255,255,.75); margin-bottom: 12px; }
+.pb-mini-top .lg { width: 20px; height: 20px; border-radius: 6px; background: linear-gradient(120deg, #5B3DF5, #EE3F84); }
+.pb-mini-top .pv { margin-left: auto; background: #FFBE2E; color: #1B1500; padding: 2px 8px; border-radius: 6px; font-size: .72rem; }
+.pb-cases { display: grid; gap: 6px; margin-bottom: 14px; }
+.pb-case { display: flex; justify-content: space-between; align-items: center; gap: 10px; background: rgba(255,255,255,.07); border-radius: 9px; padding: 9px 11px; font-size: .88rem; font-weight: 600; text-decoration: none; color: #fff; }
+.pb-case:hover { background: rgba(255,255,255,.13); }
+.pb-case em { font-style: normal; font-size: .72rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; }
+.pb-nums { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 8px; }
+.pb-nums div { background: rgba(255,255,255,.07); border-radius: 9px; padding: 9px 10px; }
+.pb-nums b { display: block; font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; }
+.pb-nums div:last-child b { font-size: .92rem; line-height: 1.3; }
+.pb-nums span { font-size: .72rem; color: rgba(255,255,255,.7); }
+@media (max-width: 900px) { .pb-card { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .pb-nums { grid-template-columns: 1fr 1fr; } .pb-nums div:last-child { grid-column: 1 / -1; } }
+
+/* ===== Testimonials ===== */
+.tst-grid { display: grid; grid-template-columns: 1.25fr 1fr 1fr; grid-template-rows: auto auto; gap: 18px; }
+.tst-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.tst { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 26px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 18px; }
+.tst.feature { grid-row: span 2; background: var(--navy); color: #fff; border: 0; position: relative; overflow: hidden; }
+.tst.feature::after { content: ""; position: absolute; width: 300px; height: 300px; border-radius: 50%; background: #5B3DF5; filter: blur(90px); opacity: .55; bottom: -120px; right: -80px; }
+.tst.feature > * { position: relative; z-index: 1; }
+.stars { display: flex; gap: 3px; color: #FFBE2E; }
+.stars svg { width: 18px; height: 18px; }
+.tst blockquote { margin: 0; font-size: 1.02rem; line-height: 1.6; flex: 1; }
+.tst.feature blockquote { font-size: clamp(1.2rem, 2vw, 1.5rem); line-height: 1.45; font-weight: 600; letter-spacing: -.01em; }
+.tst-who { display: flex; align-items: center; gap: 12px; }
+.tst-photo { width: 48px; height: 48px; border-radius: 50%; overflow: hidden; flex: none; }
+.tst-photo svg { width: 100%; height: 100%; display: block; }
+.tst-who b { display: block; line-height: 1.25; }
+.tst-who small { color: var(--muted); font-size: .86rem; }
+.tst.feature .tst-who small { color: rgba(255,255,255,.7); }
+.co { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: .92rem; color: var(--muted); }
+.tst.feature .co { color: rgba(255,255,255,.85); }
+.co i { width: 20px; height: 20px; border-radius: 6px; display: block; }
+.tst-note { text-align: center; margin: 22px 0 0; font-size: .82rem; color: var(--muted); }
+@media (max-width: 960px) { .tst-grid { grid-template-columns: 1fr 1fr; } .tst.feature { grid-column: span 2; grid-row: auto; } }
+@media (max-width: 620px) { .tst-grid { grid-template-columns: 1fr; } .tst.feature { grid-column: auto; } }
+.note-wrap > div:first-child { position: sticky; top: 110px; }
+@media (max-width: 880px) { .note-wrap > div:first-child { position: static; } }
+
+.reveal.gone { display: none; }
+.cnt .b { display: none; } .cnt.on .a { display: none; } .cnt.on .b { display: inline; }
+/* ===== Readiness radar ===== */
+.radar-wrap { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(28px, 5vw, 60px); align-items: center; }
+.radar-card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: clamp(20px, 3vw, 30px); box-shadow: var(--shadow); }
+.presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.preset { font: inherit; font-size: .88rem; font-weight: 700; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; }
+.preset:hover, .preset.on { border-color: var(--violet); background: var(--violet-soft); color: var(--violet); }
+.sl { margin-bottom: 14px; }
+.sl label { display: flex; justify-content: space-between; font-weight: 600; font-size: .92rem; margin-bottom: 4px; }
+.sl label output { color: var(--violet); font-weight: 800; }
+.sl input { width: 100%; accent-color: var(--violet); }
+.radar-svg { width: 100%; max-width: 440px; display: block; margin: 0 auto; overflow: visible; }
+.radar-svg text { font-family: var(--font); font-size: 11px; font-weight: 700; fill: var(--muted); }
+.radar-svg .ring { fill: none; stroke: var(--border); }
+.radar-svg .axis { stroke: var(--border); }
+.radar-svg .target { fill: rgba(238,63,132,.12); stroke: #EE3F84; stroke-width: 2; stroke-dasharray: 6 5; }
+.radar-svg .cand { fill: rgba(91,61,245,.28); stroke: #5B3DF5; stroke-width: 2.5; transition: all .35s cubic-bezier(.2,.8,.2,1); }
+.radar-svg .dot { fill: #5B3DF5; stroke: #fff; stroke-width: 2; transition: all .35s cubic-bezier(.2,.8,.2,1); }
+.legend { display: flex; gap: 18px; justify-content: center; font-size: .85rem; color: var(--muted); margin: 6px 0 16px; flex-wrap: wrap; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 14px; height: 14px; border-radius: 4px; display: block; }
+.verdict-box { border-radius: 16px; padding: 16px 18px; background: var(--bg-soft); }
+.verdict-box b { display: block; font-size: 1.1rem; margin-bottom: 4px; }
+.verdict-box p { margin: 0 0 6px; color: var(--muted); font-size: .94rem; }
+.focus-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.focus-chips span { font-size: .82rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--pink-soft); color: var(--pink); }
+.focus-chips span.str { background: var(--teal-soft); color: var(--teal); }
+.disclaimer { font-size: .8rem; color: var(--muted); margin: 10px 0 0; }
+@media (max-width: 900px) { .radar-wrap { grid-template-columns: 1fr; } }
+
+/* confetti */
+#confetti { position: fixed; inset: 0; pointer-events: none; z-index: 100; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="announce">New: try a real HANDOVER case and get live AI feedback.<a href="try.html">Open the practice workspace</a></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="HANDOVER home">
+      <span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="11" height="9" rx="2"/><rect x="10" y="11" width="11" height="9" rx="2" fill="#fff" fill-opacity=".25"/></svg></span>
+      HANDOVER
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#what">What we do</a>
+      <a href="#how">How it works</a>
+      <a href="try.html">Try it live</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#pilot">Pilot</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-small" href="#apply">Apply for the pilot</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="hero-grid-bg"></div><div class="hero-glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="badge"><b>New</b>Pilot opening in October for Indian SaaS teams</span>
+      <h1>Your next onboarding specialist may <span class="grad-text">already be on your support team.</span></h1>
+      <p class="hero-lede">HANDOVER is a 3-week programme that trains your support employees for customer onboarding roles, using simulations built from your own workflows. You see who’s ready before anyone moves, and you pay only when a transfer succeeds.</p>
+      <div class="hero-actions">
+        <a class="btn btn-light" href="#try">Try a 3-minute handover</a>
+        <a class="btn btn-outline-light" href="#apply">Apply for the pilot</a>
+        <button class="btn-play" type="button" data-play-tour><span class="pc-ring"><svg viewBox="0 0 24 24" fill="#fff"><path d="M6 4l14 8-14 8z"/></svg></span>Watch the tour</button>
+      </div>
+      <ul class="hero-points">
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#2EE6BF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>Built from your own workflows</li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#2EE6BF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>Pay only for successful transfers</li>
+      </ul>
+    </div>
+
+    <div class="mock-area" role="img" aria-label="Product preview: a HANDOVER cohort dashboard showing employees moving from training to rotation to ready">
+      <div class="browser" aria-hidden="true">
+        <div class="browser-bar"><i></i><i></i><i></i><span class="url">handover / Onboarding track / Cohort 1</span></div>
+        <div class="app">
+          <div class="app-side"><span class="on"></span><span></span><span></span><span></span></div>
+          <div class="app-main">
+            <div class="app-head"><b>Support to onboarding</b><span>Week 3</span></div>
+            <div class="kpis">
+              <div class="kpi k1"><small>In programme</small><b>10</b></div>
+              <div class="kpi k2"><small>In rotation</small><b>4</b></div>
+              <div class="kpi k3"><small>Ready</small><b>3</b></div>
+            </div>
+            <div class="rows">
+              <div class="erow"><span class="av" style="background:#0EA88D">PS</span><div><b>Priya S.</b><em>Unfamiliar case passed</em></div><div class="pbar"><i style="width:92%;background:#0EA88D"></i></div><span class="chip c-ready">Ready</span></div>
+              <div class="erow"><span class="av" style="background:#5B3DF5">AK</span><div><b>Aman K.</b><em>Supervised rotation</em></div><div class="pbar"><i style="width:70%;background:#FFBE2E"></i></div><span class="chip c-rot">Rotation</span></div>
+              <div class="erow"><span class="av" style="background:#EE3F84">NR</span><div><b>Neha R.</b><em>Replayed 2 decisions</em></div><div class="pbar"><i style="width:48%;background:#5B3DF5"></i></div><span class="chip c-train">Training</span></div>
+              <div class="erow"><span class="av" style="background:#2F8CFF">VM</span><div><b>Vikram M.</b><em>Handling the twist</em></div><div class="pbar"><i style="width:35%;background:#5B3DF5"></i></div><span class="chip c-train">Training</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="float f1" aria-hidden="true"><span class="f-icon" style="background:#DDF6F0"><svg viewBox="0 0 24 24" fill="none" stroke="#0EA88D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span><div><b>Priya moved to onboarding</b><small>Met standards after 30 days</small></div></div>
+      <div class="float f2" aria-hidden="true"><span class="f-icon" style="background:#ECE8FF"><svg viewBox="0 0 24 24" fill="none" stroke="#5B3DF5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><div><b>Decision replayed</b><small>Checked the logs this time</small></div></div>
+      <div class="sticky-mini" aria-hidden="true">same person, new role</div>
+    </div>
+  </div>
+</section>
+
+<!-- FACTS STRIP -->
+<div class="facts-strip">
+  <div class="wrap">
+    <div class="fact"><b data-count="3" data-suf=" weeks">3 weeks</b><span>of guided practice</span></div>
+    <div class="fact"><b data-count="4" data-pre="~" data-suf=" hrs">~4 hrs</b><span>a week per employee</span></div>
+    <div class="fact"><b data-count="30" data-suf=" days">30 days</b><span>on the job before any fee</span></div>
+    <div class="fact"><b>₹0</b><span>for employees who don’t move</span></div>
+  </div>
+</div>
+
+<!-- VALUE PROP -->
+<section id="what">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker">HANDOVER in one minute</span>
+      <h2>Turn support employees into onboarding specialists, with proof before you move anyone.</h2>
+      <p class="lede">What we do, how we do it, and what your team gets out of it.</p>
+    </div>
+    <div class="vp-grid">
+      <article class="vp v1">
+        <span class="vp-label"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></i>What we do</span>
+        <h3>We prepare your support employees to move into customer onboarding roles.</h3>
+        <ul>
+          <li><span><b>One focused move:</b> from customer support to customer onboarding.</span></li>
+          <li><span><b>For Indian SaaS teams</b> where AI has freed up support capacity and onboarding has a backlog.</span></li>
+          <li><span><b>Built around your product,</b> not generic courses.</span></li>
+        </ul>
+      </article>
+      <article class="vp v2">
+        <span class="vp-label"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h6"/></svg></i>How we do it</span>
+        <h3>Realistic practice, expert review, then real work under supervision.</h3>
+        <ul>
+          <li><span><b>3 weeks of simulations</b> (about 4 hours a week): take over a stalled customer rollout built from your workflows.</span></li>
+          <li><span><b>Twists and decision replays:</b> employees see what they missed, then try again.</span></li>
+          <li><span><b>AI feedback in the moment;</b> experienced onboarding leads review the reasoning.</span></li>
+          <li><span><b>A supervised rotation</b> on real onboarding work before any transfer.</span></li>
+        </ul>
+      </article>
+      <article class="vp v3">
+        <span class="vp-label"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></i>The value to you</span>
+        <h3>Fill onboarding roles faster and more safely, and pay only when it works.</h3>
+        <ul>
+          <li><span><b>People who already know your product,</b> so you skip months of product training.</span></li>
+          <li><span><b>Decisions on evidence:</b> a readiness report for every employee.</span></li>
+          <li><span><b>Low risk:</b> the main fee is due only after a successful transfer and 30 days in the role.</span></li>
+          <li><span><b>A real next step</b> for your best support people, so they grow with you instead of leaving.</span></li>
+        </ul>
+      </article>
+    </div>
+    <div class="flow" aria-label="The HANDOVER journey">
+      <div class="fstep"><span class="ic" style="background:#ECE8FF"><svg viewBox="0 0 24 24" fill="none" stroke="#5B3DF5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="2.5" y="14" width="4.5" height="6" rx="1.5"/><rect x="17" y="14" width="4.5" height="6" rx="1.5"/></svg></span><div><b>Support employee</b><small>Knows your product</small></div></div>
+      <div class="fstep"><span class="ic" style="background:#E1EEFF"><svg viewBox="0 0 24 24" fill="none" stroke="#2F8CFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><div><b>3 weeks of simulations</b><small>Practice, replay, prove it</small></div></div>
+      <div class="fstep"><span class="ic" style="background:#FFF3D6"><svg viewBox="0 0 24 24" fill="none" stroke="#C98A00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 11l2 2 4-4"/></svg></span><div><b>Supervised rotation</b><small>Real onboarding work</small></div></div>
+      <div class="fstep"><span class="ic" style="background:#DDF6F0"><svg viewBox="0 0 24 24" fill="none" stroke="#0EA88D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h12l-2.5 4L17 12H5"/></svg></span><div><b>Onboarding specialist</b><small>You pay once it works</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT TOUR -->
+<section class="tour-section soft" id="tour">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker">Product tour</span>
+      <h2>See HANDOVER in 30 seconds.</h2>
+      <p class="lede">A walkthrough of the manager dashboard and the employee simulation, from cohort to transfer.</p>
+    </div>
+    <div class="tour-frame" id="tourFrame" tabindex="0" role="region" aria-label="Product demo video of the HANDOVER dashboard. Press space to play or pause.">
+      <div class="rec" aria-hidden="true"><i></i>Product demo</div>
+      <div class="app-win" aria-hidden="true">
+        <div class="win-top">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="win-logo"><span></span>HANDOVER</span>
+          <span class="win-search">Search employees, cohorts, cases</span>
+          <span class="win-right"><span class="win-bell"></span><span class="win-av">MK</span></span>
+        </div>
+        <div class="win-body">
+          <nav class="win-side">
+            <span class="nav-i"><i></i>Cohorts</span>
+            <span class="nav-i"><i></i>Simulations</span>
+            <span class="nav-i"><i></i>Reports</span>
+            <span class="nav-i"><i></i>Transfers</span>
+            <span class="nav-i"><i></i>Settings</span>
+          </nav>
+          <div class="screen">
+
+            <!-- 1: Cohort dashboard -->
+            <div class="scene" data-nav="0" data-start="0.86,0.8" data-cap="Managers see every employee’s progress in one place.">
+              <div class="s-head"><div><small>Cohorts</small><h5>Cohort 1: Support to onboarding</h5></div><span class="chip c-train">Week 3 of 3</span></div>
+              <div class="ktiles">
+                <div class="kt k1"><small>In programme</small><b>10</b></div>
+                <div class="kt k2"><small>Decisions replayed</small><b>18</b></div>
+                <div class="kt k3"><small>Ready for rotation</small><b>3</b></div>
+                <div class="kt" style="background:#E1EEFF"><small>Manager check-ins</small><b>6</b></div>
+              </div>
+              <div class="tbl">
+                <div class="tr th"><span>Employee</span><span>Current case</span><span>Progress</span><span>Status</span></div>
+                <div class="tr" data-click="2.6" data-fx="2.7:on"><span class="who"><span class="a" style="background:#0EA88D">PS</span>Priya S.</span><span class="muted">Meridian rollout</span><div class="mbar"><i style="width:88%;background:#0EA88D"></i></div><span><span class="chip c-ready">Ready</span></span></div>
+                <div class="tr"><span class="who"><span class="a" style="background:#5B3DF5">AK</span>Aman K.</span><span class="muted">Unfamiliar case</span><div class="mbar"><i style="width:70%;background:#FFBE2E"></i></div><span><span class="chip c-rot">Reviewing</span></span></div>
+                <div class="tr"><span class="who"><span class="a" style="background:#EE3F84">NR</span>Neha R.</span><span class="muted">The twist</span><div class="mbar"><i style="width:52%;background:#5B3DF5"></i></div><span><span class="chip c-train">Training</span></span></div>
+                <div class="tr"><span class="who"><span class="a" style="background:#2F8CFF">VM</span>Vikram M.</span><span class="muted">Handover notes</span><div class="mbar"><i style="width:34%;background:#5B3DF5"></i></div><span><span class="chip c-train">Training</span></span></div>
+              </div>
+            </div>
+
+            <!-- 2: Simulation + replay -->
+            <div class="scene" data-nav="1" data-start="0.5,0.4" data-cap="Employees take over a stalled rollout and replay decisions they get wrong.">
+              <div class="s-head"><div><small>Simulations / Priya S.</small><h5>Meridian Pharmacies rollout</h5></div><span class="chip c-rot">Simulated</span></div>
+              <div class="two">
+                <div class="pane hide-sm">
+                  <h6>Handover note</h6>
+                  <div class="snote">Customer just needs reminders. Sent two already. — Arjun</div>
+                  <div class="tk"><span>#48213, Store 12</span>POS sync stuck at step 4</div>
+                  <div class="tk"><span>#48290, Store 3</span>Same error at step 4</div>
+                </div>
+                <div class="pane">
+                  <p class="qq">What do you do first?</p>
+                  <div class="o2 bad" data-click="1.2" data-fx="1.3:on;3.0:struck"><b>A</b>Send a third reminder email</div>
+                  <div class="o2"><b>B</b>Escalate to engineering</div>
+                  <div class="o2 good" data-click="4.2" data-fx="4.3:on"><b>C</b>Check how many stores are stuck at step 4</div>
+                  <div class="fbk miss reveal" data-fx="1.5:on;3.0:gone"><span>Missed: 31 of 38 stores are blocked at step 4.</span><span class="minibtn ghost" data-click="2.9">Replay</span></div>
+                  <div class="fbk hit reveal" data-fx="4.5:on" style="margin-top:0">Strong call: you checked the evidence first.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3: The twist -->
+            <div class="scene" data-nav="1" data-start="0.62,0.5" data-cap="Then a twist tests judgment: a deadline the team can’t meet.">
+              <div class="ntoast" data-fx="0.5:on"><small>New message from Meridian’s ops head</small><b>“We need all 38 stores live in two weeks.”</b></div>
+              <div class="s-head"><div><small>Simulations / Priya S.</small><h5>Rollout capacity check</h5></div></div>
+              <div class="two">
+                <div class="pane">
+                  <h6>Stores per week</h6>
+                  <div class="chart">
+                    <div class="col"><div class="bar" style="--h:100%;background:#EE3F84" data-fx="1.1:on"></div><div class="bar" style="--h:53%;background:#FFBE2E" data-fx="1.3:on"></div></div>
+                    <div class="col"><div class="bar" style="--h:100%;background:#EE3F84" data-fx="1.2:on"></div><div class="bar" style="--h:53%;background:#FFBE2E" data-fx="1.4:on"></div></div>
+                  </div>
+                  <div class="clabels"><span>Week 1</span><span>Week 2</span></div>
+                  <div class="lgd" style="margin-top:.8cqw"><span><i style="background:#EE3F84"></i>Needed: 19</span><span><i style="background:#FFBE2E"></i>Team: 10</span></div>
+                </div>
+                <div class="pane">
+                  <p class="qq">Your proposal</p>
+                  <div class="waves reveal" data-fx="3.2:on" style="margin-bottom:1cqw">
+                    <div class="wv" style="background:#DDF6F0">Wave 1<small>10 stores</small></div>
+                    <div class="wv" style="background:#ECE8FF">Wave 2<small>14 stores</small></div>
+                    <div class="wv" style="background:#FFF3D6">Wave 3<small>14 stores</small></div>
+                  </div>
+                  <span class="minibtn" data-click="2.9" data-fx="3.0:on"><span class="a">Propose phased rollout</span><span class="b">Proposal sent ✓</span></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4: Readiness report -->
+            <div class="scene" data-nav="2" data-start="0.4,0.45" data-cap="Managers get a readiness report built from what employees actually did.">
+              <div class="s-head"><div><small>Reports</small><h5>Readiness report: Priya S.</h5></div><span class="chip c-ready">Ready with coaching</span></div>
+              <div class="rep">
+                <div class="pane">
+                  <div class="sk"><div class="l">Diagnosis <span>Checked evidence first</span></div><div class="t"><i style="--w:90%;background:#0EA88D" data-fx="0.5:on"></i></div></div>
+                  <div class="sk"><div class="l">Adjusting the plan <span>Phased rollout</span></div><div class="t"><i style="--w:80%;background:#5B3DF5" data-fx="0.8:on"></i></div></div>
+                  <div class="sk"><div class="l">Unfamiliar case <span>Applied it unprompted</span></div><div class="t"><i style="--w:85%;background:#2F8CFF" data-fx="1.1:on"></i></div></div>
+                  <div class="sk" style="margin-bottom:0"><div class="l">Timeline conversations <span>Developing</span></div><div class="t"><i style="--w:52%;background:#FFBE2E" data-fx="1.4:on"></i></div></div>
+                </div>
+                <div class="cmp">
+                  <div><small class="muted">Manager’s call before training</small><b>Unsure</b></div>
+                  <div style="background:#DDF6F0"><small class="muted">Assessment</small><b>Ready with coaching</b></div>
+                  <span class="minibtn" data-click="3.6" data-fx="3.7:on" style="justify-self:start"><span class="a">Approve rotation</span><span class="b">Rotation approved ✓</span></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5: Transfer -->
+            <div class="scene" data-nav="3" data-start="0.7,0.75" data-cap="Pay only when someone successfully moves into onboarding.">
+              <div class="s-head"><div><small>Transfers</small><h5>Support to onboarding</h5></div></div>
+              <div class="kanban">
+                <div class="kcol"><h6>In rotation <span class="cnt" data-fx="2.6:on"><span class="a">2</span><span class="b">1</span></span></h6>
+                  <div class="kc mover" data-click="1.4" data-fx="1.9:on"><span class="who"><span class="a" style="background:#0EA88D">PS</span></span><div>Priya S.<small>Day 30 review passed</small></div></div>
+                  <div class="kc"><span class="who"><span class="a" style="background:#5B3DF5">AK</span></span><div>Aman K.<small>Day 12</small></div></div>
+                </div>
+                <div class="kcol"><h6>Transferred <span class="cnt" data-fx="2.6:on"><span class="a">1</span><span class="b">2</span></span></h6>
+                  <div class="kc" style="visibility:hidden" data-click="2.6"><span class="who"><span class="a">--</span></span><div>-<small>-</small></div></div>
+                  <div class="kc"><span class="who"><span class="a" style="background:#EE3F84">RJ</span></span><div>Ritu J.<small>Onboarding specialist</small></div></div>
+                </div>
+                <div class="kcol hide-sm"><h6>Next cohort <span>4</span></h6>
+                  <div class="kc"><span class="who"><span class="a" style="background:#2F8CFF">VM</span></span><div>Vikram M.<small>Week 2</small></div></div>
+                </div>
+              </div>
+              <div class="feebanner reveal" data-fx="3.2:on"><i>₹</i><span><b>Transfer fee applies to Priya.</b> She moved into onboarding and met agreed standards after 30 days.</span></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="cursor" id="tourCursor" aria-hidden="true"><span class="rip"></span><svg viewBox="0 0 24 24"><path d="M4 2l15 11.5-6.6 1.1L16 21.5l-3 1.4-3.6-6.9L4 20z" fill="#fff" stroke="#14163A" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+      <p class="caption" id="tourCaption" aria-live="polite"></p>
+      <div class="controls">
+        <button class="ctl-btn" id="tourToggle" type="button" aria-label="Play demo"></button>
+        <div class="chapters" id="tourChapters">
+          <button class="chap" type="button" aria-label="Chapter 1: Cohort"><span class="seg"><i></i></span><span class="t">Cohort</span></button>
+          <button class="chap" type="button" aria-label="Chapter 2: Simulation"><span class="seg"><i></i></span><span class="t">Simulation</span></button>
+          <button class="chap" type="button" aria-label="Chapter 3: The twist"><span class="seg"><i></i></span><span class="t">The twist</span></button>
+          <button class="chap" type="button" aria-label="Chapter 4: Report"><span class="seg"><i></i></span><span class="t">Report</span></button>
+          <button class="chap" type="button" aria-label="Chapter 5: Transfer"><span class="seg"><i></i></span><span class="t">Transfer</span></button>
+        </div>
+        <span class="time" id="tourTime">0:00 / 0:30</span>
+      </div>
+      <button class="poster" id="tourPoster" type="button" aria-label="Play the 30-second product demo">
+        <span class="poster-inner"><span class="big-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span><b>Watch the product demo</b><span>30 seconds, no sound needed</span></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="why">
+  <div class="wrap">
+    <span class="kicker">Why now</span>
+    <h2>Ticket volume is down. The onboarding backlog isn’t.</h2>
+    <p class="lede">As AI handles more support tickets, many SaaS teams have people they could redeploy, while customer implementations wait for someone to run them. Before opening another hiring requisition, look at who already knows your product.</p>
+    <div class="duo">
+      <div class="panel p-have">
+        <div class="panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="2.5" y="14" width="4.5" height="6" rx="1.5"/><rect x="17" y="14" width="4.5" height="6" rx="1.5"/></svg></div>
+        <h3>What your support team already knows</h3>
+        <p>Product knowledge you’d otherwise spend months teaching a new hire.</p>
+        <ul>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>Which configurations trip customers up</li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>What needs explaining twice</li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>When to pull in engineering</li>
+        </ul>
+      </div>
+      <div class="panel p-need">
+        <div class="panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h12l-2.5 4L17 12H5"/></svg></div>
+        <h3>What onboarding asks of them</h3>
+        <p>Different skills that a strong support record doesn’t prove.</p>
+        <ul>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>Understanding what a customer actually needs</li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>Planning an implementation and holding the timeline</li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>Getting a customer live and using the product</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bridge">
+      <p>HANDOVER closes that gap and shows you who’s ready, before you make the move.</p>
+      <a class="btn btn-light btn-small" href="#how">See how it works</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="soft" id="how">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker">How it works</span>
+      <h2>Take over a stalled project. Prove it on a new one.</h2>
+      <p class="lede">Three weeks of practice built around your own workflows, then supervised real work before anyone decides on a transfer.</p>
+    </div>
+    <div class="steps">
+      <article class="step s1"><span class="step-n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h5l2 3h4l2-3h5"/><path d="M5 5h14l2 8v6H3v-6z"/></svg></span><small>Step 1, week 1</small><h3>Take over a stalled implementation</h3><p>Handover notes, customer tickets and a half-finished plan, using synthetic customer data.</p></article>
+      <article class="step s2"><span class="step-n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><small>Step 2, weeks 1–2</small><h3>Handle the twist</h3><p>The data turns out unreliable, or the plan exceeds the team’s capacity. They revise.</p></article>
+      <article class="step s3"><span class="step-n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><small>Step 3, week 2</small><h3>Replay the decision</h3><p>See the evidence they missed, take a short lesson on that exact gap, then try again.</p></article>
+      <article class="step s4"><span class="step-n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><small>Step 4, week 3</small><h3>Prove it on a new case</h3><p>A new customer and different data, then a short defence of their choices with a reviewer.</p></article>
+      <article class="step s5"><span class="step-n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 11l2 2 4-4"/></svg></span><small>Step 5, rotation</small><h3>Do supervised real work</h3><p>Real onboarding tasks with a manager watching, before any formal move.</p></article>
+    </div>
+    <div class="steps-foot">
+      <span class="pill-info"><i></i>AI gives instant, specific feedback</span>
+      <span class="pill-info"><i style="background:var(--violet)"></i>Experienced onboarding leads review the reasoning</span>
+      <span class="pill-info"><i style="background:var(--pink)"></i>Simulated work is always labelled</span>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="demo-section" id="try">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker">Interactive demo</span>
+      <h2>Try a handover yourself.</h2>
+      <p class="lede">A shortened version of what your employees would do. You’ve just inherited a customer rollout that’s gone quiet. Read what was left for you, then decide. Then try a live AI-reviewed case in the practice workspace.</p>
+    </div>
+    <div class="workspace" id="workspace">
+      <div class="ws-bar">
+        <div class="ws-title">Meridian Pharmacies rollout <span>Simulated</span></div>
+        <div class="progress" aria-label="Progress"><span id="stepLabel">Decision 1 of 2</span><i class="on" id="p1"></i><i id="p2"></i><i id="p3"></i></div>
+      </div>
+      <div class="ws-body">
+        <aside class="materials" aria-label="Handover materials">
+          <div>
+            <h3>Note from the previous owner</h3>
+            <div class="sticky">Customer just needs reminders. Sent two already. Go-live was due last Friday.<small>Arjun</small></div>
+          </div>
+          <div>
+            <h3>Recent tickets</h3>
+            <ul class="tickets">
+              <li><span>#48213, Store 12</span>POS sync stuck at step 4</li>
+              <li><span>#48290, Store 3</span>Same error at step 4 after the update</li>
+              <li><span>#48302, Head office</span>Who on our side should own the data import?</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Activation</h3>
+            <div class="meter">
+              <strong>7 of 38 stores live</strong>
+              <div class="meter-track"><div class="meter-fill"></div></div>
+              <p>31 stores stopped at the same step: POS sync.</p>
+            </div>
+          </div>
+        </aside>
+        <div class="decision" id="decision" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE PRACTICE (Task 4 feature lives at /try) -->
+<section class="practice-band" id="coach">
+  <div class="wrap">
+    <div class="pb-card">
+      <div>
+        <span class="pb-tag"><i></i>Live AI practice</span>
+        <h2>Try a real HANDOVER case in two minutes.</h2>
+        <p class="pb-lede">Open the practice workspace, make an onboarding decision, and get feedback from an AI onboarding lead in seconds. Or send it to someone on your support team and see how they handle it.</p>
+        <div class="pb-actions">
+          <a class="btn btn-grad" href="try.html">Open the practice workspace</a>
+          <a class="btn btn-ghost" href="#apply">Apply for the pilot</a>
+        </div>
+      </div>
+      <div class="pb-mini">
+        <div class="pb-mini-top"><span class="lg"></span>HANDOVER Practice<span class="pv">Preview</span></div>
+        <div class="pb-cases">
+          <a class="pb-case" href="try.html#stalled">The stalled rollout<em style="background:#47182D;color:#FF8FB5">Stalled</em></a>
+          <a class="pb-case" href="try.html#deadline">The impossible deadline<em style="background:#3D3014;color:#FFD36E">Deadline</em></a>
+          <a class="pb-case" href="try.html#conflict">Two stakeholders, one go-live<em style="background:#14305A;color:#8DB8FF">Conflict</em></a>
+        </div>
+        <div class="pb-nums">
+          <div><b id="pbTotal">–</b><span>decisions reviewed</span></div>
+          <div><b id="pbStrong">–</b><span>strong calls</span></div>
+          <div><b id="pbTop">–</b><span>most-missed skill this week</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVIDENCE -->
+<section id="evidence">
+  <div class="wrap report-wrap">
+    <div>
+      <span class="kicker">Readiness reports</span>
+      <h2>Decide transfers on evidence, not gut feel.</h2>
+      <p class="lede" style="margin-bottom:30px">For each employee, managers get a short report built from what they actually did.</p>
+      <ul class="feat-list">
+        <li><span class="fi" style="background:var(--violet)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span><div><b>How they diagnose</b><span>Did they test assumptions before acting?</span></div></li>
+        <li><span class="fi" style="background:var(--pink)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><div><b>How they improve</b><span>What changed after feedback, and did it stick on a new case?</span></div></li>
+        <li><span class="fi" style="background:var(--teal)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg></span><div><b>What they still need</b><span>Specific gaps to coach during the rotation.</span></div></li>
+        <li><span class="fi" style="background:var(--sky)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg></span><div><b>A check on your own call</b><span>We record managers’ readiness predictions before training, so you can see what the assessment adds.</span></div></li>
+      </ul>
+    </div>
+    <article class="report" aria-label="Example readiness report">
+      <div class="rep-head"><span class="av" style="background:#0EA88D">PS</span><div><b>Priya S.</b><span>Support to onboarding, Cohort 1</span></div><span class="chip c-ready">Ready with coaching</span></div>
+      <div class="skill"><div class="skill-top">Diagnosis <span>Checked errors before acting</span></div><div class="pbar"><i style="width:90%;background:var(--teal)"></i></div></div>
+      <div class="skill"><div class="skill-top">Adjusting the plan <span>Switched to phased rollout</span></div><div class="pbar"><i style="width:80%;background:var(--violet)"></i></div></div>
+      <div class="skill"><div class="skill-top">Unfamiliar case <span>Applied the same check unprompted</span></div><div class="pbar"><i style="width:85%;background:var(--sky)"></i></div></div>
+      <div class="skill"><div class="skill-top">Timeline conversations <span>Raises risks late</span></div><div class="pbar"><i style="width:52%;background:var(--yellow)"></i></div></div>
+      <div class="rep-note"><b>Coach during rotation</b>Practise flagging timeline risks early in customer calls.</div>
+      <div class="rep-foot"><span>Manager’s call before training: Unsure</span><span>Example report, simulated work</span></div>
+    </article>
+  </div>
+</section>
+
+<!-- READINESS RADAR -->
+<section class="soft" id="radar">
+  <div class="wrap radar-wrap">
+    <div>
+      <span class="kicker">Interactive</span>
+      <h2>Who on your team could make the move?</h2>
+      <p class="lede" style="margin-bottom:26px">Think of a support employee, rate them, or pick a sample profile. See how they compare with what onboarding asks for, and where HANDOVER would focus.</p>
+      <div class="radar-card">
+        <div class="presets" role="group" aria-label="Sample profiles">
+          <button class="preset on" type="button" data-p="product">Product expert</button>
+          <button class="preset" type="button" data-p="people">People person</button>
+          <button class="preset" type="button" data-p="allround">All-rounder</button>
+        </div>
+        <div id="radarSliders"></div>
+      </div>
+    </div>
+    <div class="radar-card">
+      <svg class="radar-svg" id="radarSvg" viewBox="-84 2 472 296" role="img" aria-label="Radar chart comparing the employee with what onboarding needs"></svg>
+      <div class="legend"><span><i style="background:rgba(91,61,245,.5)"></i>Your employee</span><span><i style="border:2px dashed #EE3F84"></i>What onboarding needs</span></div>
+      <div class="verdict-box" id="radarVerdict" aria-live="polite"></div>
+      <p class="disclaimer">Illustrative only. In the programme, HANDOVER assesses real work, not ratings.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker">What leaders say</span>
+      <h2>Built with onboarding and support leaders.</h2>
+      <p class="lede">How customer success teams describe the problem HANDOVER solves.</p>
+    </div>
+    <div class="tst-grid">
+      <figure class="tst feature">
+        <div class="tst-top"><span class="stars" aria-label="5 out of 5"></span><span class="co"><i style="background:linear-gradient(135deg,#FFBE2E,#EE3F84)"></i>Tallyfin</span></div>
+        <blockquote>“We kept hiring onboarding specialists from outside and spending months teaching them our product. HANDOVER made us look properly at the people already answering our tickets.”</blockquote>
+        <figcaption class="tst-who"><span class="tst-photo" data-face="#B97A55,#1E1410,#EE3F84,#3B2AB8,long"></span><div><b>Ananya Rao</b><small>Head of Customer Success, Tallyfin</small></div></figcaption>
+      </figure>
+      <figure class="tst">
+        <div class="tst-top"><span class="stars" aria-label="5 out of 5"></span><span class="co"><i style="background:linear-gradient(135deg,#2F8CFF,#5B3DF5)"></i>Orbitly</span></div>
+        <blockquote>“The readiness report was the part I didn’t know I needed. It showed me who was actually ready, not just who interviewed well.”</blockquote>
+        <figcaption class="tst-who"><span class="tst-photo" data-face="#A86F4C,#151010,#2F8CFF,#DDEBFF,short"></span><div><b>Karan Mehta</b><small>Director of Onboarding, Orbitly</small></div></figcaption>
+      </figure>
+      <figure class="tst">
+        <div class="tst-top"><span class="stars" aria-label="5 out of 5"></span><span class="co"><i style="background:linear-gradient(135deg,#0EA88D,#2F8CFF)"></i>Ledgerloop</span></div>
+        <blockquote>“Paying only when someone actually moves into the role made it an easy conversation with our finance team.”</blockquote>
+        <figcaption class="tst-who"><span class="tst-photo" data-face="#8E5A3C,#0F0B09,#0EA88D,#DDF6F0,bun"></span><div><b>Sneha Iyer</b><small>VP Customer Experience, Ledgerloop</small></div></figcaption>
+      </figure>
+      <figure class="tst">
+        <div class="tst-top"><span class="stars" aria-label="5 out of 5"></span><span class="co"><i style="background:linear-gradient(135deg,#5B3DF5,#EE3F84)"></i>Kitesync</span></div>
+        <blockquote>“My team liked that the cases looked like our real customers, not textbook examples. The replay feature is how they actually learn.”</blockquote>
+        <figcaption class="tst-who"><span class="tst-photo" data-face="#C68E68,#3A2618,#5B3DF5,#FFF3D6,short"></span><div><b>Rohan Nair</b><small>Support Team Lead, Kitesync</small></div></figcaption>
+      </figure>
+      <figure class="tst">
+        <div class="tst-top"><span class="stars" aria-label="5 out of 5"></span><span class="co"><i style="background:linear-gradient(135deg,#FFBE2E,#0EA88D)"></i>Quillstack</span></div>
+        <blockquote>“Our best support people were leaving because there was no next step. This gives them one inside the company.”</blockquote>
+        <figcaption class="tst-who"><span class="tst-photo" data-face="#D19A74,#2B1B14,#FFBE2E,#FFE3EE,long"></span><div><b>Meera Kapoor</b><small>Head of People, Quillstack</small></div></figcaption>
+      </figure>
+    </div>
+    <p class="tst-note">Illustrative testimonials from fictional people and companies, created for this concept. They’ll be replaced with real feedback after the pilot.</p>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="soft" id="versus">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker">Why HANDOVER</span>
+      <h2>Why not just hire, or promote on gut feel?</h2>
+      <p class="lede">How HANDOVER compares with the two ways teams usually fill onboarding roles.</p>
+    </div>
+    <div class="cmp-table" role="region" aria-label="Comparison table" tabindex="0">
+      <div class="cmp-grid" role="table">
+        <div class="cmp-h" role="columnheader"></div>
+        <div class="cmp-h" role="columnheader">Hire externally</div>
+        <div class="cmp-h" role="columnheader">Promote on gut feel</div>
+        <div class="cmp-h cmp-us" role="columnheader">HANDOVER</div>
+
+        <div class="cmp-q" role="rowheader">Already knows your product</div>
+        <div><span class="mk n"><svg viewBox="0 0 24 24" fill="none" stroke="#EE3F84" stroke-width="3.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span class="cmp-muted">Needs months to learn it</span></div>
+        <div><span class="mk y"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>Yes</div>
+        <div class="cmp-us"><span class="mk y"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>Yes</div>
+
+        <div class="cmp-q" role="rowheader">Evidence they can run onboarding</div>
+        <div><span class="mk m"><svg viewBox="0 0 24 24" fill="none" stroke="#C98A00" stroke-width="3.5" stroke-linecap="round"><path d="M6 12h12"/></svg></span><span class="cmp-muted">Interviews only</span></div>
+        <div><span class="mk n"><svg viewBox="0 0 24 24" fill="none" stroke="#EE3F84" stroke-width="3.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span class="cmp-muted">A manager’s hunch</span></div>
+        <div class="cmp-us"><span class="mk y"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>A readiness report from real work</div>
+
+        <div class="cmp-q" role="rowheader">Training for the new role</div>
+        <div><span class="mk m"><svg viewBox="0 0 24 24" fill="none" stroke="#C98A00" stroke-width="3.5" stroke-linecap="round"><path d="M6 12h12"/></svg></span><span class="cmp-muted">Depends on your team</span></div>
+        <div><span class="mk n"><svg viewBox="0 0 24 24" fill="none" stroke="#EE3F84" stroke-width="3.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span class="cmp-muted">Learn on the job</span></div>
+        <div class="cmp-us"><span class="mk y"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>3 weeks of practice plus a supervised rotation</div>
+
+        <div class="cmp-q" role="rowheader">Cost if it doesn’t work out</div>
+        <div><span class="mk n"><svg viewBox="0 0 24 24" fill="none" stroke="#EE3F84" stroke-width="3.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span class="cmp-muted">Agency fee and a mis-hire</span></div>
+        <div><span class="mk n"><svg viewBox="0 0 24 24" fill="none" stroke="#EE3F84" stroke-width="3.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span class="cmp-muted">A failed move and a gap in support</span></div>
+        <div class="cmp-us"><span class="mk y"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>Setup fee only</div>
+
+        <div class="cmp-q" role="rowheader">Keeps your best support people</div>
+        <div><span class="mk n"><svg viewBox="0 0 24 24" fill="none" stroke="#EE3F84" stroke-width="3.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span class="cmp-muted">No path for them</span></div>
+        <div><span class="mk m"><svg viewBox="0 0 24 24" fill="none" stroke="#C98A00" stroke-width="3.5" stroke-linecap="round"><path d="M6 12h12"/></svg></span><span class="cmp-muted">Sometimes</span></div>
+        <div class="cmp-us"><span class="mk y"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>A clear next step inside the company</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap pricing">
+    <div>
+      <span class="kicker">Pricing</span>
+      <h2>You pay for transfers, not attendance.</h2>
+      <p class="lede" style="margin-bottom:28px">Our main fee depends on the outcome you actually care about.</p>
+      <div class="price-cards">
+        <div class="pc"><span class="fi" style="background:var(--violet)">1</span><div><b>Setup fee per company</b><span>Covers building cases from your workflows.</span></div></div>
+        <div class="pc"><span class="fi" style="background:var(--teal)">2</span><div><b>Transfer fee per employee who moves</b><span>Only once they’ve moved into onboarding and met agreed standards after 30 days.</span></div></div>
+        <div class="pc"><span class="fi" style="background:var(--pink)">₹0</span><div><b>No fee for course completion</b><span>Employees who finish but don’t transfer cost nothing beyond setup.</span></div></div>
+      </div>
+    </div>
+    <div class="calc" aria-labelledby="calcTitle">
+      <h3 id="calcTitle">Estimate what you’d pay</h3>
+      <label for="enrolled"><span>Employees in the programme</span><output id="enrolledOut">10</output></label>
+      <input type="range" id="enrolled" min="1" max="15" value="10">
+      <label for="moved"><span>Employees who transfer</span><output id="movedOut">3</output></label>
+      <input type="range" id="moved" min="0" max="10" value="3">
+      <div class="people" id="people" aria-hidden="true"></div>
+      <div class="total">
+        <div><span>Setup</span><span id="setupAmt">₹30,000</span></div>
+        <div><span id="transferLabel">3 transfers × ₹40,000</span><span id="transferAmt">₹1,20,000</span></div>
+        <div><span id="noMoveLabel">7 who don’t transfer</span><span>₹0</span></div>
+        <div class="sum"><span>Total</span><span id="totalAmt">₹1,50,000</span></div>
+      </div>
+      <p class="compare" id="compare"></p>
+      <p class="compare">Indicative pilot pricing; final terms are agreed with each company. Employee time, supervision and any backfilling are your own costs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PILOT -->
+<section class="pilot" id="pilot">
+  <div class="wrap">
+    <span class="kicker">Pilot programme</span>
+    <h2>Three pilot seats for Indian SaaS teams.</h2>
+    <p class="lede">We’re looking for teams where AI has freed up support capacity and onboarding has open roles or a backlog.</p>
+    <div class="pilot-stats">
+      <div class="ps"><b>3</b><span>companies</span></div>
+      <div class="ps"><b>~30</b><span>employees in total</span></div>
+      <div class="ps"><b>~4 hrs</b><span>a week for 3 weeks</span></div>
+      <div class="ps"><b>October</b><span>pilot starts</span></div>
+    </div>
+
+    <div class="apply" id="apply">
+      <div class="fit">
+        <h3>Is your team a fit?</h3>
+        <p>Tick what’s true today. We’ll tell you honestly if something else would serve you better.</p>
+        <label class="check"><input type="checkbox" class="fitbox">AI or automation has reduced our support workload</label>
+        <label class="check"><input type="checkbox" class="fitbox">Our onboarding team has open roles or a backlog</label>
+        <label class="check"><input type="checkbox" class="fitbox">We can move people without replacing them in support</label>
+        <label class="check"><input type="checkbox" class="fitbox">A manager can supervise real onboarding work during a rotation</label>
+        <div class="fit-result" id="fitResult" aria-live="polite"><b>Tick the boxes above</b>Your result will appear here.</div>
+        <div class="measure">
+          <b>What the pilot will measure</b>
+          <ul>
+            <li>Employees who transfer and meet standards after 30 days</li>
+            <li>Whether scores predict real performance better than managers’ first calls</li>
+            <li>Reviewer and manager time per employee</li>
+          </ul>
+        </div>
+      </div>
+
+      <form class="apply-form" id="appForm" novalidate>
+        <div id="formFields" style="display:grid;gap:16px">
+          <h3>Apply for the pilot</h3>
+          <div class="row2">
+            <div class="field"><label for="fName">Your name</label><input id="fName" name="fullname" autocomplete="name" required><span class="err" id="eName"></span></div>
+            <div class="field"><label for="fEmail">Work email</label><input id="fEmail" name="email" type="email" autocomplete="email" required><span class="err" id="eEmail"></span></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label for="fCompany">Company</label><input id="fCompany" name="company" autocomplete="organization" required><span class="err" id="eCompany"></span></div>
+            <div class="field"><label for="fSize">Company size</label>
+              <select id="fSize" name="size">
+                <option>Under 50 people</option>
+                <option selected>50–200 people</option>
+                <option>201–1,000 people</option>
+                <option>Over 1,000 people</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="fCount">Support employees you’d consider for onboarding</label><input id="fCount" name="count" type="number" min="1" max="200" inputmode="numeric" placeholder="e.g. 8"></div>
+          <fieldset>
+            <legend>What most often stops a strong support employee moving into onboarding?</legend>
+            <div class="choices">
+              <label><input type="radio" name="barrier" value="The skill gap" checked><span>The skill gap</span></label>
+              <label><input type="radio" name="barrier" value="Judging readiness"><span>Judging readiness</span></label>
+              <label><input type="radio" name="barrier" value="Releasing them from support"><span>Releasing them from support</span></label>
+              <label><input type="radio" name="barrier" value="Something else"><span>Something else</span></label>
+            </div>
+          </fieldset>
+          <button class="btn btn-grad" type="submit">Apply for the pilot</button>
+          <p class="form-note">No job or promotion guarantees. Simulated work is always labelled as simulated.</p>
+        </div>
+        <div class="done-msg" id="doneMsg" aria-live="polite">
+          <div class="done-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></div>
+          <h3>Application received</h3>
+          <p id="doneText"></p>
+          <button class="btn btn-ghost btn-small" type="button" id="resetForm">Submit another application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER NOTE -->
+<section id="note">
+  <div class="wrap note-wrap">
+    <div>
+      <span class="kicker">From the founder</span>
+      <h2>Why we built HANDOVER</h2>
+      <p class="lede">Our launch post, as shared on LinkedIn with Customer Success and Onboarding leaders. Tap “…more” to read it in full.</p>
+      <a class="btn btn-ghost" href="#apply">Apply for the pilot</a>
+    </div>
+    <article class="feed-post" aria-label="Launch post by Rhea, co-founder of HANDOVER">
+      <div class="fp-head">
+        <span class="fp-photo" data-face="#C98B62,#2B1B14,#5B3DF5,#E9E4FF,long"></span>
+        <div class="fp-who">
+          <b>Rhea <span>• Author</span></b>
+          <small>Co-founder, HANDOVER | Helping SaaS teams grow onboarding talent from within</small>
+          <small class="meta">2d • <svg viewBox="0 0 16 16" fill="rgba(0,0,0,.6)" aria-label="Visible to anyone"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm4.9 6h-2a11 11 0 00-.9-4A5.5 5.5 0 0112.9 7zM8 2.6c.7.9 1.3 2.5 1.4 4.4H6.6C6.7 5.1 7.3 3.5 8 2.6zM6 3a11 11 0 00-.9 4h-2A5.5 5.5 0 016 3zM3.1 9h2a11 11 0 00.9 4A5.5 5.5 0 013.1 9zM8 13.4c-.7-.9-1.3-2.5-1.4-4.4h2.8c-.1 1.9-.7 3.5-1.4 4.4zm2 .6a11 11 0 00.9-4h2a5.5 5.5 0 01-2.9 4z"/></svg></small>
+        </div>
+        <button class="fp-follow" type="button" id="fpFollow">+ Follow</button>
+      </div>
+      <div class="fp-body" id="fpBody"><div class="clip">Your next customer onboarding specialist may already be on your support team.
+
+AI is handling more support tickets. For some SaaS teams, that means capacity to redeploy, even while customer implementations are waiting for people.
+
+Before hiring externally, it’s worth looking at who already knows your product.
+
+Support employees know which configurations trip customers up, what needs explaining twice and when to involve engineering. That knowledge matters in onboarding.
+
+But knowing the product and running an implementation are different skills. Managers need evidence before making a transfer.
+
+We built HANDOVER to help with that decision.
+
+Employees work through stalled implementations based on your company’s workflows, with AI-guided feedback and expert review. They then take on supervised, real onboarding work before any formal move.
+
+We’ve tied our pricing to the transfer. Companies pay a setup fee. The main fee applies only when an employee successfully moves into onboarding and meets agreed standards after 30 days. There’s no fee for course completion.
+
+We’re taking 3 Indian SaaS companies into the pilot, with about 30 employees in total, starting in October.
+
+What’s the biggest barrier to moving people from support into onboarding in your company: skills, readiness assessment or releasing them from their current team?
+
+<span class="tag">#CustomerSuccess</span> <span class="tag">#CustomerOnboarding</span> <span class="tag">#InternalMobility</span></div><button class="fp-more" type="button" id="fpMore">…more</button></div>
+      <div class="fp-card">
+        <div class="fp-img" aria-hidden="true">
+          <span class="tagline"><i></i>HANDOVER</span>
+          <b>Your next onboarding specialist may already be on your team.</b>
+          <span>Pilot opening for 3 Indian SaaS teams</span>
+          <div class="cards"><div>Priya S. <em>Ready</em></div><div>Aman K. <em>Rotation</em></div><div>Neha R. <em>Training</em></div></div>
+        </div>
+        <div class="fp-link"><b>HANDOVER: Move support talent into onboarding, with evidence</b><small>handover-site.vercel.app</small></div>
+      </div>
+      <div class="fp-actions">
+        <button type="button" id="fpLike"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M7 11v9H4v-9zM7 11l4-7c1.5 0 2.5 1 2.2 2.6L12.6 10H19a2 2 0 012 2.3l-1.2 6A2 2 0 0117.8 20H7"/></svg><span>Like</span></button>
+        <button type="button" id="fpComment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg><span>Comment</span></button>
+        <button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l3 3-3 3M20 6H8a4 4 0 00-4 4v1M7 21l-3-3 3-3M4 18h12a4 4 0 004-4v-1"/></svg><span>Repost</span></button>
+        <button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 3L3 10l7 3 3 7z"/><path d="M10 13l5-5"/></svg><span>Send</span></button>
+      </div>
+      <div class="fp-comment" id="fpCommentBox"><span class="fp-photo"></span><input type="text" placeholder="Add a comment…" aria-label="Add a comment"></div>
+    </article>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="soft" id="faq">
+  <div class="wrap">
+    <div class="center"><span class="kicker">FAQ</span><h2>Questions leaders ask us</h2><p class="lede">Straight answers, including when HANDOVER isn’t the right choice.</p></div>
+    <div class="faq">
+      <details><summary>Do you guarantee that employees will transfer?</summary><p>No. We don’t promise jobs or promotions. That’s why the main fee is paid only when someone actually moves and meets the standards you agreed after 30 days.</p></details>
+      <details><summary>How much of my team’s time does this take?</summary><p>About four hours a week per employee for three weeks, plus a supervised rotation whose length we agree with you. A manager needs to be available to supervise that real work.</p></details>
+      <details><summary>Do you need access to our customer data?</summary><p>No. We build cases from your workflows and processes using synthetic customer data. Experienced onboarding leads check that the cases reflect how your team actually works.</p></details>
+      <details><summary>Why not just promote our best support people?</summary><p>You can, and often should. HANDOVER helps when it isn’t obvious who’s ready, when informal moves have gone wrong before, or when managers don’t have time to coach each person from scratch.</p></details>
+      <details><summary>When is this not the right fit?</summary><p>If you can’t release people from support without hiring replacements, or onboarding has no open roles, external hiring or ordinary coaching will probably serve you better.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-top:clamp(70px,9vw,110px)" class="cta-band">
+  <div class="wrap">
+    <div class="cta-box">
+      <div class="blob b1"></div><div class="blob b2"></div>
+      <h2>Find out who’s ready, before you make the move.</h2>
+      <p>Three pilot seats for Indian SaaS teams, starting in October. Pay only for successful transfers.</p>
+      <div class="hero-actions" style="justify-content:center">
+        <a class="btn btn-light" href="#apply">Apply for the pilot</a>
+        <a class="btn btn-outline-light" href="#tour" data-play-tour>Watch the tour</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="11" height="9" rx="2"/><rect x="10" y="11" width="11" height="9" rx="2" fill="#fff" fill-opacity=".25"/></svg></span>HANDOVER</a>
+    <span>Try your next role. Build the evidence to earn it.</span>
+  </div>
+</footer>
+<script>
+(function () {
+  "use strict";
+
+  /* ---------------- Decision replay demo ---------------- */
+  var scenario = [
+    {
+      q: "The previous owner says the customer just needs reminders. What do you do first?",
+      incoming: null,
+      skill: "Diagnosis",
+      options: [
+        { key: "A", text: "Send a third reminder with a setup video", v: "missed",
+          fb: "The tickets show stores are blocked at step 4 of the POS sync. More reminders won’t help someone who can’t finish the task.",
+          next: "Before nudging a customer, check whether they’re able to complete the step." },
+        { key: "B", text: "Book a call with the customer’s store operations lead", v: "partial",
+          fb: "Talking to the customer helps, but you’d go in without knowing whether the sync failure affects every store.",
+          next: "Look at the error pattern first so the call solves something." },
+        { key: "C", text: "Check the sync errors and see how many stores are stuck at step 4", v: "strong",
+          fb: "You tested the previous owner’s assumption against the evidence. 31 of 38 stores stopped at the same step, so this is a blocker, not a motivation problem.",
+          next: "This is exactly the habit onboarding needs: confirm the cause before choosing the fix." },
+        { key: "D", text: "Escalate to engineering straight away", v: "partial",
+          fb: "Engineering may need to fix it, but you haven’t confirmed the scope or ruled out a setup issue on the customer’s side.",
+          next: "Escalations land better with evidence: how many stores, which step, what you’ve already checked." }
+      ]
+    },
+    {
+      q: "The sync fix is in. Now the customer wants everything live in two weeks. What do you propose?",
+      incoming: { from: "Meridian’s head of operations", text: "We need all 38 stores live in two weeks for the festive season." },
+      skill: "Adjusting the plan",
+      options: [
+        { key: "A", text: "Agree to all 38 stores in two weeks and ask the team to work weekends", v: "missed",
+          fb: "Your team can set up about 10 stores a week. Promising 38 in two sets up a failed go-live and a frustrated customer.",
+          next: "Check capacity before you commit to a date." },
+        { key: "B", text: "Propose 10 stores first to confirm the fix, then roll out the rest in waves", v: "strong",
+          fb: "You protected what matters most to them, getting live for the season, while being honest about capacity. The first wave also tests the fix.",
+          next: "Strong onboarding leads offer a plan, not just a yes or a no." },
+        { key: "C", text: "Ask for another month without explaining why", v: "missed",
+          fb: "A delay with no reason erodes trust. The customer needs to see a plan, not just a new date.",
+          next: "When you can’t meet a date, explain the constraint and offer an alternative." },
+        { key: "D", text: "Send it back to the sales team to renegotiate", v: "partial",
+          fb: "Sales may need to know, but owning this conversation is part of onboarding.",
+          next: "Bring a proposal to the customer yourself, and keep sales informed." }
+      ]
+    }
+  ];
+
+  var verdictText = { strong: "Strong call", partial: "Partly there", missed: "Missed the evidence" };
+  var verdictClass = { strong: "v-strong", partial: "v-partial", missed: "v-missed" };
+
+  var state = { step: 0, first: [], final: [], replays: [0, 0], tried: [[], []] };
+  var box = document.getElementById("decision");
+  var stepLabel = document.getElementById("stepLabel");
+  var bars = [document.getElementById("p1"), document.getElementById("p2"), document.getElementById("p3")];
+
+  function el(tag, attrs, html) {
+    var n = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+    if (html != null) n.innerHTML = html;
+    return n;
+  }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]; }); }
+
+  function setProgress() {
+    bars.forEach(function (b, i) { b.classList.toggle("on", i <= state.step); });
+    stepLabel.textContent = state.step < 2 ? "Decision " + (state.step + 1) + " of 2" : "Your evidence";
+  }
+
+  function renderStep() {
+    setProgress();
+    box.innerHTML = "";
+    if (state.step >= scenario.length) return renderSummary();
+    var s = scenario[state.step];
+    box.appendChild(el("h3", null, "Decision " + (state.step + 1)));
+    if (s.incoming) {
+      box.appendChild(el("div", { "class": "incoming" }, "<span>New message from " + esc(s.incoming.from) + "</span>“" + esc(s.incoming.text) + "”"));
+      box.appendChild(el("p", { "class": "form-note" }, "Your team can set up about 10 stores a week."));
+    }
+    box.appendChild(el("p", { "class": "q" }, esc(s.q)));
+    var opts = el("div", { "class": "options", role: "group", "aria-label": "Choose an option" });
+    s.options.forEach(function (o, i) {
+      var b = el("button", { type: "button", "class": "opt", "data-key": o.key }, esc(o.text));
+      if (state.tried[state.step].indexOf(i) > -1) { b.classList.add("tried"); b.disabled = true; b.setAttribute("aria-label", o.text + " (already tried)"); }
+      b.addEventListener("click", function () { choose(i); });
+      opts.appendChild(b);
+    });
+    box.appendChild(opts);
+    box.appendChild(el("div", { "class": "feedback", id: "fb" }));
+  }
+
+  function choose(i) {
+    var s = scenario[state.step];
+    var o = s.options[i];
+    if (state.first[state.step] == null) state.first[state.step] = i;
+    state.final[state.step] = i;
+    if (state.tried[state.step].indexOf(i) === -1) state.tried[state.step].push(i);
+
+    var buttons = box.querySelectorAll(".opt");
+    buttons.forEach(function (b, j) { b.disabled = true; b.classList.toggle("picked", j === i); });
+
+    var fb = document.getElementById("fb");
+    fb.innerHTML =
+      '<span class="verdict ' + verdictClass[o.v] + '">' + verdictText[o.v] + "</span>" +
+      "<p>" + esc(o.fb) + "</p>" +
+      '<p class="next">' + esc(o.next) + "</p>";
+    var actions = el("div", { "class": "fb-actions" });
+    if (o.v !== "strong") {
+      var replay = el("button", { type: "button", "class": "btn btn-small" }, "Replay this decision");
+      replay.addEventListener("click", function () { state.replays[state.step]++; renderStep(); focusFirstOption(); });
+      actions.appendChild(replay);
+    }
+    var cont = el("button", { type: "button", "class": o.v === "strong" ? "btn btn-small" : "btn btn-ghost btn-small" },
+      state.step === scenario.length - 1 ? "See your evidence" : (o.v === "strong" ? "Continue" : "Continue anyway"));
+    cont.addEventListener("click", function () { state.step++; renderStep(); focusFirstOption(); });
+    actions.appendChild(cont);
+    fb.appendChild(actions);
+    fb.classList.add("show");
+    (o.v !== "strong" ? actions.firstChild : cont).focus({ preventScroll: true });
+  }
+
+  function focusFirstOption() {
+    var first = box.querySelector(".opt:not([disabled]), .btn");
+    if (first) first.focus({ preventScroll: true });
+  }
+
+  function renderSummary() {
+    var html = '<h3>Your evidence</h3><p class="q">Here’s what a manager would see from this handover.</p><div class="evidence-card">';
+    scenario.forEach(function (s, k) {
+      var f = s.options[state.first[k]], l = s.options[state.final[k]];
+      var changed = state.first[k] !== state.final[k];
+      html += '<div class="ev-row"><div><b>' + esc(s.skill) + "</b><span>" +
+        (changed ? "First choice: " + esc(f.text) + ". After replay: " + esc(l.text) + "." : "Choice: " + esc(l.text) + ".") +
+        "</span></div><span class=\"verdict " + verdictClass[l.v] + '">' + verdictText[l.v] + "</span></div>";
+    });
+    var totalReplays = state.replays[0] + state.replays[1];
+    html += '<div class="ev-row"><div><b>Replays used</b><span>' +
+      (totalReplays === 0 ? "None. You got there first time." : totalReplays + (totalReplays === 1 ? " replay. Improvement after feedback counts as evidence too." : " replays. Improvement after feedback counts as evidence too.")) +
+      "</span></div><span></span></div></div>";
+    html += '<p class="next" style="color:var(--ink-soft);margin:0">In the full programme, employees next face an unfamiliar customer with different data, then explain their choices to an experienced reviewer.</p>';
+    box.innerHTML = html;
+    var actions = el("div", { "class": "fb-actions" });
+    var again = el("button", { type: "button", "class": "btn btn-ghost btn-small" }, "Start again");
+    again.addEventListener("click", function () { state = { step: 0, first: [], final: [], replays: [0, 0], tried: [[], []] }; renderStep(); focusFirstOption(); });
+    var apply = el("a", { href: "#apply", "class": "btn btn-small" }, "Apply for the pilot");
+    actions.appendChild(apply); actions.appendChild(again);
+    box.appendChild(actions);
+    document.dispatchEvent(new CustomEvent("handover:done"));
+  }
+
+  renderStep();
+
+  /* ---------------- Pricing calculator ---------------- */
+  var SETUP = 30000, FEE = 40000, AGENCY = Math.round(800000 * 0.0833);
+  var enrolled = document.getElementById("enrolled"), moved = document.getElementById("moved");
+  function inr(n) { return "₹" + n.toLocaleString("en-IN"); }
+  function updateCalc() {
+    var e = +enrolled.value;
+    moved.max = e;
+    if (+moved.value > e) moved.value = e;
+    var m = +moved.value;
+    document.getElementById("enrolledOut").textContent = e;
+    document.getElementById("movedOut").textContent = m;
+    var people = document.getElementById("people");
+    people.innerHTML = "";
+    for (var i = 0; i < e; i++) { var p = document.createElement("i"); if (i < m) p.className = "moved"; people.appendChild(p); }
+    document.getElementById("setupAmt").textContent = inr(SETUP);
+    document.getElementById("transferLabel").textContent = m + (m === 1 ? " transfer" : " transfers") + " × " + inr(FEE);
+    document.getElementById("transferAmt").textContent = inr(m * FEE);
+    document.getElementById("noMoveLabel").textContent = (e - m) + " who don’t transfer";
+    document.getElementById("totalAmt").textContent = inr(SETUP + m * FEE);
+    var cmp = document.getElementById("compare");
+    cmp.textContent = m > 0
+      ? "For comparison, hiring " + m + (m === 1 ? " person" : " people") + " through an agency at 8.33% of an assumed ₹8 lakh salary would cost about " + inr(m * AGENCY) + " in fees, before they learn your product."
+      : "If nobody transfers, you pay only the setup fee.";
+  }
+  enrolled.addEventListener("input", updateCalc);
+  moved.addEventListener("input", updateCalc);
+  updateCalc();
+
+  /* ---------------- Fit check ---------------- */
+  var boxes = document.querySelectorAll(".fitbox");
+  var fitResult = document.getElementById("fitResult");
+  function updateFit() {
+    var n = 0, touched = false;
+    boxes.forEach(function (b) { if (b.checked) n++; });
+    touched = n > 0 || fitResult.dataset.touched === "1";
+    if (!touched) return;
+    fitResult.dataset.touched = "1";
+    var msg;
+    if (n === 4) msg = "<b>Strong fit</b>Apply using the form. We’ll set up a 30-minute call to check roles and timing.";
+    else if (n >= 2) msg = "<b>Possible fit</b>Apply and tell us what’s missing. Some gaps, like supervision time, can be planned for.";
+    else msg = "<b>Probably not yet</b>External hiring or ordinary coaching may serve you better right now. You’re still welcome to apply.";
+    fitResult.innerHTML = msg;
+  }
+  boxes.forEach(function (b) { b.addEventListener("change", updateFit); });
+
+  /* ---------------- Application form ---------------- */
+  var form = document.getElementById("appForm");
+  function setErr(id, msg) { document.getElementById(id).textContent = msg; }
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var name = document.getElementById("fName").value.trim(), email = document.getElementById("fEmail").value.trim(), company = document.getElementById("fCompany").value.trim();
+    var ok = true;
+    setErr("eName", ""); setErr("eEmail", ""); setErr("eCompany", "");
+    if (!name) { setErr("eName", "Enter your name."); ok = false; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr("eEmail", "Enter a work email, like name@company.com."); ok = false; }
+    if (!company) { setErr("eCompany", "Enter your company name."); ok = false; }
+    if (!ok) { var firstErr = form.querySelector(".err:not(:empty)"); if (firstErr) firstErr.previousElementSibling.focus(); return; }
+    document.getElementById("doneText").textContent =
+      "Thanks, " + name + ". We’ve noted " + company + "’s interest in the pilot and will reply to " + email + " within three working days.";
+    document.getElementById("formFields").style.display = "none";
+    var done = document.getElementById("doneMsg");
+    done.classList.add("show");
+    done.querySelector("h3").setAttribute("tabindex", "-1");
+    done.querySelector("h3").focus();
+    document.dispatchEvent(new CustomEvent("handover:applied"));
+  });
+  document.getElementById("resetForm").addEventListener("click", function () {
+    form.reset();
+    document.getElementById("doneMsg").classList.remove("show");
+    document.getElementById("formFields").style.display = "grid";
+    document.getElementById("fName").focus();
+  });
+})();
+</script>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Hero: cursor glow + 3D tilt ---------- */
+  var hero = document.querySelector(".hero"), browser = document.querySelector(".browser");
+  if (browser) browser.addEventListener("animationend", function () { browser.style.animation = "none"; browser.style.opacity = "1"; });
+  if (hero && browser && !reduce && window.matchMedia("(hover: hover)").matches) {
+    hero.addEventListener("mousemove", function (e) {
+      var r = hero.getBoundingClientRect();
+      hero.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      hero.style.setProperty("--my", (e.clientY - r.top) + "px");
+      var b = browser.getBoundingClientRect();
+      var x = (e.clientX - (b.left + b.width / 2)) / b.width, y = (e.clientY - (b.top + b.height / 2)) / b.height;
+      x = Math.max(-1, Math.min(1, x)); y = Math.max(-1, Math.min(1, y));
+      browser.style.transform = "perspective(1200px) rotateY(" + (x * 7) + "deg) rotateX(" + (-y * 7) + "deg)";
+    });
+    hero.addEventListener("mouseleave", function () { browser.style.transform = ""; });
+  }
+
+  /* ---------- Hero: live dashboard ---------- */
+  var rows = document.querySelectorAll(".erow"), kpis = document.querySelectorAll(".kpi b");
+  var frames = [
+    { k: [10, 4, 3], r: [["Unfamiliar case passed", 92, "#0EA88D", "c-ready", "Ready"], ["Supervised rotation", 70, "#FFBE2E", "c-rot", "Rotation"], ["Replayed 2 decisions", 48, "#5B3DF5", "c-train", "Training"], ["Handling the twist", 35, "#5B3DF5", "c-train", "Training"]] },
+    { k: [10, 5, 3], r: [["Unfamiliar case passed", 92, "#0EA88D", "c-ready", "Ready"], ["Supervised rotation", 78, "#FFBE2E", "c-rot", "Rotation"], ["Started rotation", 66, "#FFBE2E", "c-rot", "Rotation"], ["Replayed 1 decision", 52, "#5B3DF5", "c-train", "Training"]] },
+    { k: [10, 4, 4], r: [["Unfamiliar case passed", 92, "#0EA88D", "c-ready", "Ready"], ["Met standards after 30 days", 96, "#0EA88D", "c-ready", "Ready"], ["Supervised rotation", 72, "#FFBE2E", "c-rot", "Rotation"], ["Unfamiliar case next", 64, "#5B3DF5", "c-train", "Training"]] }
+  ];
+  var fi = 0;
+  function applyFrame(f) {
+    frames[f].k.forEach(function (v, i) { if (kpis[i]) kpis[i].textContent = v; });
+    rows.forEach(function (row, i) {
+      var d = frames[f].r[i], em = row.querySelector("em"), bar = row.querySelector(".pbar i"), chip = row.querySelector(".chip");
+      var changed = em.textContent !== d[0];
+      em.textContent = d[0]; bar.style.width = d[1] + "%"; bar.style.background = d[2];
+      chip.className = "chip " + d[3]; chip.textContent = d[4];
+      if (changed) { row.classList.add("flash"); setTimeout(function () { row.classList.remove("flash"); }, 900); }
+    });
+  }
+  if (!reduce && rows.length) setInterval(function () { fi = (fi + 1) % frames.length; applyFrame(fi); }, 3200);
+
+  /* ---------- Count-up numbers ---------- */
+  var counters = document.querySelectorAll("[data-count]");
+  if ("IntersectionObserver" in window) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var elx = en.target, n = +elx.dataset.count, pre = elx.dataset.pre || "", suf = elx.dataset.suf || "";
+        cio.unobserve(elx);
+        if (reduce) return;
+        var start = null;
+        function step(ts) { if (!start) start = ts; var p = Math.min(1, (ts - start) / 1100); var e = 1 - Math.pow(1 - p, 3); elx.textContent = pre + Math.round(n * e) + suf; if (p < 1) requestAnimationFrame(step); }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: .6 });
+    counters.forEach(function (c) { cio.observe(c); });
+  }
+
+  /* ---------- Product demo video (dashboard screen recording) ---------- */
+  var frame = document.getElementById("tourFrame");
+  if (frame) {
+    var scenes = frame.querySelectorAll(".scene"), chaps = frame.querySelectorAll(".chap"), segs = frame.querySelectorAll(".chap .seg i");
+    var navs = frame.querySelectorAll(".nav-i"), cursor = document.getElementById("tourCursor");
+    var cap = document.getElementById("tourCaption"), toggle = document.getElementById("tourToggle"), poster = document.getElementById("tourPoster"), timeEl = document.getElementById("tourTime");
+    var SCENE = 6, TOTAL = SCENE * scenes.length, t = 0, playing = false, last = null, cur = -1, started = false;
+    var ICON_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>';
+    var ICON_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
+    var ICON_REPLAY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>';
+    function fmt(s) { s = Math.floor(s); return "0:" + (s < 10 ? "0" : "") + s; }
+    function ease(p) { return p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; }
+    function showScene(i) {
+      if (i === cur) return;
+      cur = i;
+      scenes.forEach(function (s, j) { s.classList.toggle("active", j === i); });
+      var nav = +scenes[i].dataset.nav;
+      navs.forEach(function (n, j) { n.classList.toggle("on", j === nav); });
+      cap.textContent = scenes[i].dataset.cap;
+      chaps.forEach(function (c, j) { c.classList.toggle("on", j === i); });
+    }
+    function applyFx(scene, local) {
+      scene.querySelectorAll("[data-fx]").forEach(function (el) {
+        el.dataset.fx.split(";").forEach(function (pair) {
+          var bits = pair.split(":"); el.classList.toggle(bits[1], local >= +bits[0]);
+        });
+      });
+    }
+    function centerOf(el) {
+      var f = frame.getBoundingClientRect(), r = el.getBoundingClientRect();
+      return [r.left - f.left + Math.min(r.width * .5, 60), r.top - f.top + r.height * .55];
+    }
+    function moveCursor(scene, local) {
+      var f = frame.getBoundingClientRect();
+      var st = (scene.dataset.start || "0.8,0.8").split(",");
+      var pos = [f.width * +st[0], f.height * +st[1]];
+      var clicks = Array.prototype.slice.call(scene.querySelectorAll("[data-click]")).sort(function (a, b) { return a.dataset.click - b.dataset.click; });
+      var clicking = false;
+      for (var k = 0; k < clicks.length; k++) {
+        var at = +clicks[k].dataset.click, target = centerOf(clicks[k]);
+        if (local >= at) { pos = target; if (local < at + .3) clicking = true; continue; }
+        var p = Math.max(0, Math.min(1, (local - (at - .85)) / .85));
+        pos = [pos[0] + (target[0] - pos[0]) * ease(p), pos[1] + (target[1] - pos[1]) * ease(p)];
+        break;
+      }
+      cursor.style.transform = "translate(" + pos[0] + "px," + pos[1] + "px)";
+      if (clicking && !cursor.classList.contains("click")) { cursor.classList.add("click"); }
+      if (!clicking) cursor.classList.remove("click");
+    }
+    function render() {
+      var i = Math.min(scenes.length - 1, Math.floor(t / SCENE)), local = t - i * SCENE;
+      showScene(i);
+      applyFx(scenes[i], local);
+      moveCursor(scenes[i], local);
+      segs.forEach(function (s, j) { s.style.width = (Math.max(0, Math.min(1, (t - j * SCENE) / SCENE)) * 100) + "%"; });
+      timeEl.textContent = fmt(t) + " / " + fmt(TOTAL);
+    }
+    function setBtn() {
+      var ended = t >= TOTAL;
+      toggle.innerHTML = playing ? ICON_PAUSE : (ended ? ICON_REPLAY : ICON_PLAY);
+      toggle.setAttribute("aria-label", playing ? "Pause demo" : (ended ? "Replay demo" : "Play demo"));
+    }
+    function loop(ts) {
+      if (!playing) return;
+      if (last == null) last = ts;
+      t += (ts - last) / 1000; last = ts;
+      if (t >= TOTAL) { t = TOTAL; playing = false; render(); setBtn(); return; }
+      render(); requestAnimationFrame(loop);
+    }
+    function play() {
+      if (t >= TOTAL) t = 0;
+      started = true; poster.classList.add("hidden"); cursor.classList.add("show");
+      playing = true; last = null; setBtn(); render(); requestAnimationFrame(loop);
+    }
+    function pause() { playing = false; setBtn(); }
+    toggle.addEventListener("click", function () { playing ? pause() : play(); });
+    poster.addEventListener("click", function () { play(); frame.focus({ preventScroll: true }); });
+    chaps.forEach(function (c, j) { c.addEventListener("click", function () { t = j * SCENE + 0.01; play(); }); });
+    frame.addEventListener("keydown", function (e) { if (e.target === frame && (e.key === " " || e.key === "k")) { e.preventDefault(); playing ? pause() : play(); } });
+    window.addEventListener("resize", function () { if (started) render(); });
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { if (!en[0].isIntersecting && playing) pause(); }, { threshold: .25 }).observe(frame);
+    showScene(0); applyFx(scenes[0], 0); setBtn(); timeEl.textContent = fmt(0) + " / " + fmt(TOTAL); cap.textContent = ""; cur = -1;
+    window.handoverPlayTour = function () { document.getElementById("tour").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); setTimeout(play, reduce ? 0 : 650); };
+    document.querySelectorAll("[data-play-tour]").forEach(function (b) { b.addEventListener("click", function (e) { e.preventDefault(); window.handoverPlayTour(); }); });
+  }
+
+  /* ---------- Illustrated portraits ---------- */
+  function shade(hex, amt) {
+    var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+    function c(v) { return Math.max(0, Math.min(255, Math.round(v * (1 + amt)))); }
+    return "#" + ((1 << 24) + (c(r) << 16) + (c(g) << 8) + c(b)).toString(16).slice(1);
+  }
+  var faceN = 0;
+  function face(spec) {
+    var p = spec.split(","), skin = p[0], hair = p[1], shirt = p[2], bg = p[3], style = p[4], id = "f" + (faceN++);
+    var dark = shade(skin, -.18), deep = shade(skin, -.35), hairHi = shade(hair, .6);
+    var back = style === "long" ? '<path d="M15 31c0-15 7.5-22 17-22s17 7 17 22c0 9 2 16 3 22H12c1-6 3-13 3-22z" fill="' + hair + '"/>' : "";
+    var top = style === "short"
+      ? '<path d="M19.5 29c-1-11 5-17 12.5-17s13.5 5.5 12.5 17c-1.5-5-4-7.5-6.5-8-3 2-9 2.5-13.5 1-2.5 1.5-4 4-5 7z" fill="' + hair + '"/>'
+      : style === "bun"
+      ? '<circle cx="32" cy="8.5" r="5.5" fill="' + hair + '"/><path d="M19.5 29c-.5-10.5 5-16.5 12.5-16.5S45 18.5 44.5 29c-2.5-6-7-8.5-12.5-8.5s-10 2.5-12.5 8.5z" fill="' + hair + '"/>'
+      : '<path d="M19 31c-.5-12 5.5-18.5 13-18.5S45.5 19 45 31c-3-6.5-6.5-9.5-11-10.5-3 3-8 4.5-12 4.5-1.5 1.5-2.5 3.5-3 6z" fill="' + hair + '"/>';
+    return '<svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="' + id + '" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="' + shade(skin, .08) + '"/><stop offset="1" stop-color="' + dark + '"/></radialGradient></defs>' +
+      '<rect width="64" height="64" fill="' + bg + '"/>' + back +
+      '<path d="M6 64c2-11 12-17.5 26-17.5S56 53 58 64z" fill="' + shirt + '"/>' +
+      '<path d="M26 46.5l6 7 6-7z" fill="' + dark + '"/>' +
+      '<path d="M27 38h10v9c-2 2-8 2-10 0z" fill="' + dark + '"/>' +
+      '<ellipse cx="20" cy="31" rx="2.4" ry="3.4" fill="' + dark + '"/><ellipse cx="44" cy="31" rx="2.4" ry="3.4" fill="' + dark + '"/>' +
+      '<ellipse cx="32" cy="29.5" rx="12" ry="14" fill="url(#' + id + ')"/>' + top +
+      '<path d="M25.5 27.3q2.3-1.3 4.4 0M34.1 27.3q2.3-1.3 4.4 0" stroke="' + shade(hair, .1) + '" stroke-width="1.2" fill="none" stroke-linecap="round"/>' +
+      '<ellipse cx="27.7" cy="30.4" rx="1.25" ry="1.45" fill="#1E1512"/><ellipse cx="36.3" cy="30.4" rx="1.25" ry="1.45" fill="#1E1512"/>' +
+      '<circle cx="28.1" cy="30" r=".4" fill="#fff"/><circle cx="36.7" cy="30" r=".4" fill="#fff"/>' +
+      '<path d="M32 31.5q-.9 2.6-.2 3.4.6.4 1.4.1" stroke="' + deep + '" stroke-width=".9" fill="none" stroke-linecap="round"/>' +
+      '<path d="M28.3 37.2q3.7 2.8 7.4 0" stroke="#8C3B33" stroke-width="1.3" fill="none" stroke-linecap="round"/>' +
+      '<circle cx="25" cy="35" r="2" fill="#E8826F" opacity=".22"/><circle cx="39" cy="35" r="2" fill="#E8826F" opacity=".22"/>' +
+      (style === "long" ? '<path d="M24 16c3-2 8-2.6 12-1" stroke="' + hairHi + '" stroke-width="1" fill="none" opacity=".35" stroke-linecap="round"/>' : "") +
+      "</svg>";
+  }
+  document.querySelectorAll("[data-face]").forEach(function (el) { el.innerHTML = face(el.dataset.face); });
+
+  /* ---------- Stars ---------- */
+  var star = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"/></svg>';
+  document.querySelectorAll(".stars").forEach(function (s) { s.innerHTML = star + star + star + star + star; });
+
+  /* ---------- Social post interactions ---------- */
+  var more = document.getElementById("fpMore");
+  if (more) more.addEventListener("click", function () { document.getElementById("fpBody").classList.add("open"); });
+  var like = document.getElementById("fpLike");
+  if (like) like.addEventListener("click", function () { like.classList.toggle("on"); });
+  var cbtn = document.getElementById("fpComment");
+  if (cbtn) cbtn.addEventListener("click", function () { var b = document.getElementById("fpCommentBox"); b.classList.add("show"); b.querySelector("input").focus(); });
+  var fol = document.getElementById("fpFollow");
+  if (fol) fol.addEventListener("click", function () { fol.classList.toggle("on"); fol.textContent = fol.classList.contains("on") ? "✓ Following" : "+ Follow"; });
+
+  /* ---------- Readiness radar ---------- */
+  var svg = document.getElementById("radarSvg");
+  if (svg) {
+    var axes = [
+      { name: "Product knowledge", short: "Product knowledge" },
+      { name: "Customer communication", short: "Communication" },
+      { name: "Planning and prioritising", short: "Planning" },
+      { name: "Handling ambiguity", short: "Ambiguity" },
+      { name: "Managing stakeholders", short: "Stakeholders" }
+    ];
+    var target = [70, 75, 80, 75, 70];
+    var presets = { product: [95, 65, 40, 45, 40], people: [70, 95, 50, 60, 82], allround: [82, 80, 72, 74, 70] };
+    var vals = presets.product.slice();
+    var CX = 150, CY = 160, R = 125, NS = "http://www.w3.org/2000/svg";
+    function pt(i, v) { var a = (-90 + i * 72) * Math.PI / 180; return [CX + Math.cos(a) * R * v / 100, CY + Math.sin(a) * R * v / 100]; }
+    function poly(arr) { return arr.map(function (v, i) { return pt(i, v).map(function (n) { return n.toFixed(1); }).join(","); }).join(" "); }
+    function mk(tag, attrs) { var n = document.createElementNS(NS, tag); for (var k in attrs) n.setAttribute(k, attrs[k]); return n; }
+    [20, 40, 60, 80, 100].forEach(function (lv) { svg.appendChild(mk("polygon", { "class": "ring", points: poly([lv, lv, lv, lv, lv]) })); });
+    axes.forEach(function (ax, i) {
+      var p = pt(i, 100); svg.appendChild(mk("line", { "class": "axis", x1: CX, y1: CY, x2: p[0], y2: p[1] }));
+      var lp = pt(i, 118), tx = mk("text", { x: lp[0], y: lp[1] + 4, "text-anchor": Math.abs(lp[0] - CX) < 5 ? "middle" : (lp[0] > CX ? "start" : "end") });
+      tx.textContent = ax.short; svg.appendChild(tx);
+    });
+    svg.appendChild(mk("polygon", { "class": "target", points: poly(target) }));
+    var cand = mk("polygon", { "class": "cand", points: poly(vals) }); svg.appendChild(cand);
+    var dots = axes.map(function (_, i) { var p = pt(i, vals[i]); var d = mk("circle", { "class": "dot", cx: p[0], cy: p[1], r: 5 }); svg.appendChild(d); return d; });
+
+    var holder = document.getElementById("radarSliders"), inputs = [];
+    axes.forEach(function (ax, i) {
+      var wrap = document.createElement("div"); wrap.className = "sl";
+      wrap.innerHTML = '<label for="rs' + i + '"><span>' + ax.name + '</span><output id="ro' + i + '"></output></label><input type="range" id="rs' + i + '" min="0" max="100" step="5">';
+      holder.appendChild(wrap);
+      var inp = wrap.querySelector("input"); inp.value = vals[i]; inputs.push(inp);
+      inp.addEventListener("input", function () { vals[i] = +inp.value; document.querySelectorAll(".preset").forEach(function (b) { b.classList.remove("on"); }); update(); });
+    });
+    document.querySelectorAll(".preset").forEach(function (b) {
+      b.addEventListener("click", function () {
+        vals = presets[b.dataset.p].slice();
+        inputs.forEach(function (inp, i) { inp.value = vals[i]; });
+        document.querySelectorAll(".preset").forEach(function (x) { x.classList.toggle("on", x === b); });
+        update();
+      });
+    });
+    var verdictEl = document.getElementById("radarVerdict");
+    function update() {
+      cand.setAttribute("points", poly(vals));
+      dots.forEach(function (d, i) { var p = pt(i, vals[i]); d.setAttribute("cx", p[0]); d.setAttribute("cy", p[1]); });
+      vals.forEach(function (v, i) { document.getElementById("ro" + i).textContent = v; });
+      var gaps = vals.map(function (v, i) { return { i: i, g: target[i] - v }; });
+      var pos = gaps.filter(function (x) { return x.g > 0; }).sort(function (a, b) { return b.g - a.g; });
+      var sum = pos.reduce(function (s, x) { return s + x.g; }, 0), max = pos.length ? pos[0].g : 0;
+      var strengths = gaps.filter(function (x) { return x.g <= 0; }).map(function (x) { return axes[x.i].short; });
+      var title, body;
+      if (max <= 5) { title = "Ready for a supervised rotation"; body = "Their profile already matches what onboarding needs. HANDOVER would confirm it with real work before any move."; }
+      else if (sum <= 90) { title = "Promising: a strong HANDOVER candidate"; body = "The gaps are the kind practice closes. They’d work on these first, then prove it on a new case."; }
+      else { title = "Not yet: build the basics first"; body = "The gaps are wide. Ordinary coaching may help before a structured move."; }
+      var html = "<b>" + title + "</b><p>" + body + "</p><div class=\"focus-chips\">";
+      pos.slice(0, 2).forEach(function (x) { html += "<span>Focus: " + axes[x.i].short + "</span>"; });
+      strengths.slice(0, 3).forEach(function (s) { html += '<span class="str">Strength: ' + s + "</span>"; });
+      verdictEl.innerHTML = html + "</div>";
+    }
+    update();
+  }
+
+  /* ---------- Confetti ---------- */
+  var cv = document.getElementById("confetti"), ctx = cv.getContext("2d"), parts = [], running = false;
+  function resize() { cv.width = innerWidth * devicePixelRatio; cv.height = innerHeight * devicePixelRatio; }
+  resize(); addEventListener("resize", resize);
+  function burst(x, y) {
+    if (reduce) return;
+    var colors = ["#5B3DF5", "#EE3F84", "#0EA88D", "#FFBE2E", "#2F8CFF"];
+    for (var i = 0; i < 140; i++) {
+      var a = Math.random() * Math.PI * 2, sp = 4 + Math.random() * 9;
+      parts.push({ x: x, y: y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 6, r: 4 + Math.random() * 5, c: colors[i % 5], rot: Math.random() * 6, vr: (Math.random() - .5) * .4, life: 0 });
+    }
+    if (!running) { running = true; requestAnimationFrame(tick); }
+  }
+  function tick() {
+    var d = devicePixelRatio; ctx.clearRect(0, 0, cv.width, cv.height);
+    parts = parts.filter(function (p) { return p.life < 110; });
+    parts.forEach(function (p) {
+      p.life++; p.vy += .32; p.vx *= .985; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+      ctx.save(); ctx.globalAlpha = Math.max(0, 1 - p.life / 110); ctx.translate(p.x * d, p.y * d); ctx.rotate(p.rot); ctx.fillStyle = p.c; ctx.fillRect(-p.r * d / 2, -p.r * d / 4, p.r * d, p.r * d / 2); ctx.restore();
+    });
+    if (parts.length) requestAnimationFrame(tick); else { running = false; ctx.clearRect(0, 0, cv.width, cv.height); }
+  }
+  function burstAt(el) { var r = el.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + Math.min(r.height / 2, innerHeight / 2)); }
+  document.addEventListener("handover:done", function () { burstAt(document.getElementById("workspace")); });
+  document.addEventListener("handover:applied", function () { burstAt(document.getElementById("appForm")); });
+})();
+</script>
+<script>
+(function () {
+  // Live numbers for the practice teaser, read back from Supabase via /api/stats
+  fetch("/api/stats").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (s) {
+    document.getElementById("pbTotal").textContent = (s.total || 0).toLocaleString("en-IN");
+    document.getElementById("pbStrong").textContent = s.total ? s.strongShare + "%" : "–";
+    document.getElementById("pbTop").textContent = (s.topFocus && s.topFocus[0]) ? s.topFocus[0].skill : "Be the first";
+  }).catch(function () {});
+})();
+</script>
+</body>
+</html>
