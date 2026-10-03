@@ -1,0 +1,6 @@
+{
+  "name": "handover-site",
+  "private": true,
+  "type": "module",
+  "description": "HANDOVER landing page with an AI decision-feedback feature (Vercel + Gemini + Supabase)"
+}

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HANDOVER Practice | Try a real onboarding case</title>
+<meta name="description" content="Try a HANDOVER practice case: make an onboarding decision and get feedback from an AI onboarding lead in seconds.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --app: #F3F4F8; --panel: #FFFFFF; --panel-2: #F8F8FB; --line: #E3E5EC; --text: #161A2E; --muted: #5F6680; --faint: #8B90A7;
+  --brand: #5B3DF5; --brand-soft: #EEEBFF; --navy: #11163A;
+  --good: #0E9F86; --good-soft: #E1F6F1; --warn: #B07400; --warn-soft: #FFF4D9; --bad: #D93A72; --bad-soft: #FFE6EF; --info: #2F7BEF; --info-soft: #E5EFFE;
+  --sticky: #FFE98A;
+  --font: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; --hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --app: #0C0F22; --panel: #151A35; --panel-2: #1B2142; --line: #2A3159; --text: #ECEDF7; --muted: #A7ACC8; --faint: #7F85A6; --brand-soft: #2A2464; --good-soft: #0F3A33; --warn-soft: #3D3014; --bad-soft: #47182D; --info-soft: #14305A; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --app: #0C0F22; --panel: #151A35; --panel-2: #1B2142; --line: #2A3159; --text: #ECEDF7; --muted: #A7ACC8; --faint: #7F85A6; --brand-soft: #2A2464; --good-soft: #0F3A33; --warn-soft: #3D3014; --bad-soft: #47182D; --info-soft: #14305A; color-scheme: dark; }
+*, *::before, *::after { box-sizing: inherit; }
+html { height: 100%; }
+body { margin: 0; min-height: 100%; background: var(--app); color: var(--text); font-family: var(--font); font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid #FFBE2E; outline-offset: 2px; border-radius: 6px; }
+button, select, textarea { font: inherit; }
+
+/* Top bar */
+.topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--navy); color: #fff; }
+.topbar .in { max-width: 1440px; margin: 0 auto; height: 58px; padding: 0 20px; display: flex; align-items: center; gap: 14px; }
+.brand { display: flex; align-items: center; gap: 9px; font-weight: 800; letter-spacing: -.01em; text-decoration: none; }
+.logo { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(120deg, #5B3DF5, #EE3F84); display: grid; place-items: center; }
+.logo svg { width: 17px; height: 17px; }
+.tag { font-size: 12px; font-weight: 700; background: rgba(255,255,255,.12); padding: 3px 9px; border-radius: 6px; }
+.tag.preview { background: #FFBE2E; color: #1B1500; }
+.spacer { flex: 1; }
+.left-pill { font-size: 13px; font-weight: 700; background: rgba(255,255,255,.1); padding: 6px 11px; border-radius: 8px; white-space: nowrap; }
+.back { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.8); text-decoration: none; white-space: nowrap; }
+.back:hover { color: #fff; }
+@media (max-width: 640px) { .tag.wstag { display: none; } .back span { display: none; } .topbar .in { gap: 10px; padding: 0 14px; } .left-pill { font-size: 12px; padding: 5px 9px; } }
+
+/* Intro */
+.intro { max-width: 1440px; margin: 0 auto; padding: 18px 20px 0; }
+.intro-card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.intro-card h1 { margin: 0 0 3px; font-size: 19px; letter-spacing: -.015em; }
+.intro-card p { margin: 0; color: var(--muted); max-width: 78ch; font-size: 14px; }
+.intro-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 9px; padding: 10px 15px; font-weight: 700; font-size: 14px; cursor: pointer; text-decoration: none; background: var(--brand); color: #fff; transition: transform .12s ease, background .12s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn svg { width: 16px; height: 16px; }
+.btn-line { background: var(--panel); color: var(--text); box-shadow: inset 0 0 0 1px var(--line); }
+.btn[disabled] { opacity: .6; cursor: progress; transform: none; }
+
+/* Workspace */
+.ws { max-width: 1440px; margin: 0 auto; padding: 16px 20px 40px; display: grid; grid-template-columns: 270px minmax(0, 1fr) 380px; gap: 16px; align-items: start; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+.ws > * { min-width: 0; }
+.panel-h { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 12px; font-weight: 700; color: var(--faint); text-transform: none; }
+.rail { position: sticky; top: 76px; }
+.cases { padding: 8px; display: grid; gap: 6px; }
+.case { text-align: left; border: 1px solid transparent; background: transparent; color: var(--text); border-radius: 10px; padding: 11px 12px; cursor: pointer; display: grid; gap: 4px; transition: background .12s ease; }
+.case:hover { background: var(--panel-2); }
+.case[aria-selected="true"] { background: var(--brand-soft); border-color: rgba(91,61,245,.35); }
+.case-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.case b { font-size: 14px; }
+.case small { color: var(--muted); font-size: 12.5px; line-height: 1.4; }
+.chip { font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 6px; white-space: nowrap; }
+.c-bad { background: var(--bad-soft); color: var(--bad); } .c-warn { background: var(--warn-soft); color: var(--warn); } .c-info { background: var(--info-soft); color: var(--info); } .c-good { background: var(--good-soft); color: var(--good); }
+.c-brand { background: var(--brand-soft); color: var(--brand); }
+.rail-foot { padding: 12px 14px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); }
+.rail-foot b { color: var(--text); display: block; margin-bottom: 4px; font-size: 13px; }
+.rail-foot ul { margin: 0; padding-left: 16px; display: grid; gap: 2px; }
+
+.casefile { padding: 18px; }
+.cf-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.cf-head small { color: var(--faint); font-size: 12px; font-weight: 600; display: block; }
+.cf-head h2 { margin: 2px 0 0; font-size: 20px; letter-spacing: -.015em; }
+.mats { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.mat { border: 1px solid var(--line); border-radius: 10px; padding: 12px; background: var(--panel); align-self: start; }
+.mat h6 { margin: 0 0 8px; font-size: 11.5px; font-weight: 700; color: var(--faint); }
+.mat.note { background: var(--sticky); color: #2A2A1F; border-color: transparent; transform: rotate(-1deg); box-shadow: 2px 4px 10px rgba(80,60,0,.15); }
+.mat.note h6 { color: rgba(42,42,31,.6); }
+.mat.note p { font-family: var(--hand); font-size: 22px; line-height: 1.1; margin: 0; }
+.tk { border-left: 3px solid var(--bad); background: var(--panel-2); border-radius: 6px; padding: 6px 9px; margin-bottom: 6px; font-size: 13px; font-weight: 600; }
+.tk:last-child { margin-bottom: 0; }
+.tk span { display: block; color: var(--faint); font-weight: 500; font-size: 11.5px; }
+.mat.email p { margin: 0; font-size: 14px; font-weight: 600; }
+.mat.email .from { display: flex; align-items: center; gap: 7px; margin-bottom: 7px; font-size: 12.5px; color: var(--muted); }
+.mat.email .from i { width: 22px; height: 22px; border-radius: 50%; background: var(--info-soft); color: var(--info); display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: 11px; }
+.mat.metric b { font-size: 22px; letter-spacing: -.02em; display: block; }
+.bar { height: 7px; border-radius: 99px; background: var(--bad-soft); overflow: hidden; margin: 8px 0 6px; }
+.bar i { display: block; height: 100%; border-radius: 99px; background: var(--good); }
+.mat.metric small, .mat.fact p { color: var(--muted); font-size: 12.5px; margin: 0; }
+.mat.fact p { font-size: 13.5px; color: var(--text); }
+.question { display: flex; gap: 10px; align-items: center; background: var(--navy); color: #fff; border-radius: 10px; padding: 12px 14px; font-weight: 700; margin-bottom: 14px; }
+.question i { width: 26px; height: 26px; border-radius: 7px; background: #FFBE2E; color: #1B1500; display: grid; place-items: center; font-style: normal; font-weight: 800; flex: none; }
+.composer { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.comp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-bottom: 1px solid var(--line); }
+.comp-row label { display: grid; gap: 3px; padding: 9px 12px; font-size: 11.5px; font-weight: 700; color: var(--faint); }
+.comp-row label + label { border-left: 1px solid var(--line); }
+.comp-row select { border: 0; background: transparent; color: var(--text); font-size: 14px; font-weight: 600; padding: 0; outline: none; cursor: pointer; }
+.composer textarea { display: block; width: 100%; border: 0; resize: vertical; min-height: 140px; padding: 12px; background: var(--panel); color: var(--text); font-size: 15px; line-height: 1.55; outline: none; }
+.comp-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 12px; background: var(--panel-2); border-top: 1px solid var(--line); flex-wrap: wrap; }
+.comp-foot small { color: var(--faint); font-size: 12px; }
+.comp-foot small.over { color: var(--bad); font-weight: 700; }
+.privacy { margin: 10px 2px 0; font-size: 12px; color: var(--faint); }
+
+.side { display: grid; gap: 16px; position: sticky; top: 76px; }
+.fb { padding: 16px; min-height: 250px; }
+.empty { display: grid; place-items: center; text-align: center; gap: 8px; color: var(--muted); font-size: 13.5px; padding: 26px 6px; }
+.empty .ico { width: 46px; height: 46px; border-radius: 12px; background: var(--brand-soft); display: grid; place-items: center; }
+.empty .ico svg { width: 22px; height: 22px; }
+.empty b { color: var(--text); display: block; font-size: 14.5px; }
+.fb-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; }
+.fb-top small { color: var(--faint); font-size: 12px; }
+.fb h3 { margin: 0 0 12px; font-size: 16.5px; line-height: 1.35; letter-spacing: -.01em; }
+.blk { border-radius: 9px; padding: 10px 12px; margin-bottom: 8px; }
+.blk small { display: block; font-size: 11.5px; font-weight: 800; margin-bottom: 2px; }
+.blk p { margin: 0; font-size: 14px; line-height: 1.5; }
+.b-good { background: var(--good-soft); } .b-good small { color: var(--good); }
+.b-miss { background: var(--bad-soft); } .b-miss small { color: var(--bad); }
+.b-lead { background: var(--info-soft); } .b-lead small { color: var(--info); }
+.fb-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; font-size: 13px; }
+.fb-foot a { color: var(--brand); font-weight: 700; }
+.msg { border-radius: 9px; padding: 12px 14px; background: var(--warn-soft); color: var(--warn); font-weight: 600; font-size: 14px; }
+.msg.err { background: var(--bad-soft); color: var(--bad); }
+.skel { display: grid; gap: 10px; }
+.skel i { display: block; height: 13px; border-radius: 6px; background: linear-gradient(90deg, var(--panel-2), var(--line), var(--panel-2)); background-size: 200% 100%; animation: sh 1.2s linear infinite; }
+@keyframes sh { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.stats { padding: 16px; }
+.live { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 800; color: var(--good); }
+.live i { width: 7px; height: 7px; border-radius: 50%; background: var(--good); animation: bl 1.4s infinite; }
+@keyframes bl { 50% { opacity: .3; } }
+.nums { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0 14px; }
+.num { background: var(--panel-2); border-radius: 9px; padding: 10px 12px; }
+.num b { display: block; font-size: 26px; font-weight: 800; letter-spacing: -.03em; line-height: 1.15; }
+.num span { font-size: 12px; color: var(--muted); }
+.stats h4 { margin: 0 0 8px; font-size: 13px; }
+.fbars { display: grid; gap: 8px; }
+.fbar { display: grid; grid-template-columns: 1fr auto; gap: 3px 8px; font-size: 13px; }
+.fbar .t { grid-column: 1 / -1; height: 7px; border-radius: 99px; background: var(--panel-2); overflow: hidden; }
+.fbar .t i { display: block; height: 100%; border-radius: 99px; background: var(--brand); transition: width .5s ease; }
+.stats-note { margin: 12px 0 0; font-size: 12px; color: var(--faint); }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); background: var(--navy); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 14px; font-weight: 600; opacity: 0; pointer-events: none; transition: all .25s ease; z-index: 50; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 1180px) { .ws { grid-template-columns: 240px minmax(0, 1fr); } .side { grid-column: 1 / -1; position: static; grid-template-columns: 1fr 1fr; } }
+@media (max-width: 820px) {
+  .ws { grid-template-columns: 1fr; } .rail { position: static; } .side { grid-template-columns: 1fr; }
+  .cases { grid-auto-flow: column; grid-auto-columns: minmax(220px, 80%); overflow-x: auto; scroll-snap-type: x mandatory; } .case { scroll-snap-align: start; }
+  .rail-foot { display: none; }
+}
+@media (max-width: 520px) { .comp-row { grid-template-columns: 1fr; } .comp-row label + label { border-left: 0; border-top: 1px solid var(--line); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001ms !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="in">
+    <a class="brand" href="index.html" aria-label="Back to HANDOVER home"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="11" height="9" rx="2"/><rect x="10" y="11" width="11" height="9" rx="2" fill="#fff" fill-opacity=".25"/></svg></span>HANDOVER</a>
+    <span class="tag wstag">Practice workspace</span><span class="tag preview">Preview</span>
+    <span class="spacer"></span>
+    <span class="left-pill" id="left">3 free reviews</span>
+    <a class="back" href="index.html">← <span>Back to site</span></a>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="intro-card">
+    <div>
+      <h1>Try a real HANDOVER case</h1>
+      <p>This is the heart of HANDOVER. In the programme, your support employees work through cases like these for three weeks, and you get evidence of who’s ready for onboarding. Make the call yourself, or send this to someone on your support team and see how they do.</p>
+    </div>
+    <div class="intro-actions">
+      <button class="btn btn-line" type="button" id="share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 002 2h12a2 2 0 002-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>Share with my team</button>
+      <a class="btn" href="index.html#apply">Apply for the pilot</a>
+    </div>
+  </div>
+</section>
+
+<main class="ws">
+  <aside class="panel rail" aria-label="Cases">
+    <div class="panel-h"><span>Cases</span><span>3</span></div>
+    <div class="cases" role="tablist" id="cases"></div>
+    <div class="rail-foot"><b>Skills these cases test</b><ul><li>Diagnosing the real problem</li><li>Capacity planning</li><li>Stakeholder management</li><li>Customer communication</li></ul></div>
+  </aside>
+
+  <section class="panel casefile" aria-live="polite">
+    <div class="cf-head" id="cfHead"></div>
+    <div class="mats" id="mats"></div>
+    <div class="question" id="question"></div>
+    <form id="form" novalidate>
+      <div class="composer">
+        <div class="comp-row">
+          <label>Who’s trying this?
+            <select id="background">
+              <option>I lead a support, onboarding or CS team</option>
+              <option>I work in customer support</option>
+              <option>I work in onboarding or customer success</option>
+              <option>Other role</option>
+            </select>
+          </label>
+          <label>Experience
+            <select id="experience"><option>0-2 years</option><option selected>2-4 years</option><option>4-6 years</option><option>6+ years</option></select>
+          </label>
+        </div>
+        <label class="visually-hidden" for="answer" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">What would you do, and why?</label>
+        <textarea id="answer" maxlength="1300" placeholder="What would you do, and why? e.g. First I’d check… because…"></textarea>
+        <div class="comp-foot"><small id="count">0 / 1,200 characters</small><button class="btn" type="submit" id="submit">Get feedback on my call</button></div>
+      </div>
+      <p class="privacy">Please don’t include names or contact details. Answers are stored anonymously to power the live numbers and improve HANDOVER.</p>
+    </form>
+  </section>
+
+  <div class="side">
+    <section class="panel fb" id="fb" aria-live="polite">
+      <div class="empty"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#5B3DF5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></span><div><b>Feedback appears here</b>What worked, what you missed, and what an experienced onboarding lead would do first.</div></div>
+    </section>
+    <section class="panel stats" aria-label="Live numbers">
+      <span class="live"><i></i>Live from our database</span>
+      <div class="nums">
+        <div class="num"><b id="sTotal">–</b><span>decisions reviewed so far</span></div>
+        <div class="num"><b id="sStrong">–</b><span>judged a strong call</span></div>
+      </div>
+      <h4>Skills people most need to work on this week</h4>
+      <div class="fbars" id="sBars"><span style="font-size:13px;color:var(--faint)">Loading…</span></div>
+      <p class="stats-note">Most misses aren’t about product knowledge. They’re about judgement, which is what HANDOVER trains.</p>
+    </section>
+  </div>
+</main>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function () {
+  "use strict";
+  var CASES = {
+    stalled: {
+      n: 1, chip: ["Stalled", "c-bad"], title: "The stalled rollout", customer: "Meridian Pharmacies", meta: "38-store pharmacy chain · You’ve just taken over", sub: "Go-live overdue. Only 7 stores live.",
+      q: "What do you do first, and why?",
+      mats: [
+        { t: "note", h: "Handover note from Arjun", p: "Customer just needs reminders. Sent two already." },
+        { t: "tickets", h: "Recent tickets", items: [["#48213 · Store 12", "POS sync stuck at step 4"], ["#48290 · Store 3", "Same error at step 4 after the update"], ["#48302 · Head office", "Who on our side should own the data import?"]] },
+        { t: "metric", h: "Stores live", v: "7 of 38", pct: 18, s: "Go-live was due last Friday" }
+      ]
+    },
+    deadline: {
+      n: 2, chip: ["Deadline", "c-warn"], title: "The impossible deadline", customer: "Meridian Pharmacies", meta: "POS sync fix has shipped · Festive season ahead", sub: "Customer wants all 38 stores in two weeks.",
+      q: "What do you propose to the customer, and why?",
+      mats: [
+        { t: "email", h: "New message", from: "Meridian’s head of operations", i: "HO", p: "“We need all 38 stores live in two weeks for the festive season.”" },
+        { t: "metric", h: "Your team’s capacity", v: "~10 stores a week", pct: 53, s: "Needed to hit the date: 19 a week" },
+        { t: "fact", h: "Also true", p: "Store staff need training before each store goes live." }
+      ]
+    },
+    conflict: {
+      n: 3, chip: ["Conflict", "c-info"], title: "Two stakeholders, one go-live", customer: "Kavya Foods", meta: "12-warehouse distributor · Go-live decision this week", sub: "IT and operations want opposite things.",
+      q: "How do you handle this, and why?",
+      mats: [
+        { t: "email", h: "Email 1", from: "IT lead", i: "IT", p: "“We need a full product-data clean-up before go-live. It’ll take about three weeks.”" },
+        { t: "email", h: "Email 2", from: "Operations head", i: "OP", p: "“We go live next Monday. We have a quarterly target to hit.”" },
+        { t: "metric", h: "Duplicate product codes (SKUs)", v: "8%", pct: 8, s: "Both have asked you to back them" }
+      ]
+    }
+  };
+  var current = "stalled";
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]; }); }
+
+  var casesEl = document.getElementById("cases");
+  Object.keys(CASES).forEach(function (id) {
+    var c = CASES[id], b = document.createElement("button");
+    b.type = "button"; b.className = "case"; b.setAttribute("role", "tab"); b.dataset.id = id;
+    b.innerHTML = '<span class="case-top"><b>' + esc(c.title) + '</b><span class="chip ' + c.chip[1] + '">' + c.chip[0] + "</span></span><small>" + esc(c.customer) + ". " + esc(c.sub) + "</small>";
+    b.addEventListener("click", function () { show(id); });
+    casesEl.appendChild(b);
+  });
+
+  function mat(m) {
+    if (m.t === "note") return '<div class="mat note"><h6>' + esc(m.h) + "</h6><p>" + esc(m.p) + "</p></div>";
+    if (m.t === "tickets") return '<div class="mat"><h6>' + esc(m.h) + "</h6>" + m.items.map(function (x) { return '<div class="tk"><span>' + esc(x[0]) + "</span>" + esc(x[1]) + "</div>"; }).join("") + "</div>";
+    if (m.t === "metric") return '<div class="mat metric"><h6>' + esc(m.h) + "</h6><b>" + esc(m.v) + '</b><div class="bar"><i style="width:' + m.pct + '%"></i></div><small>' + esc(m.s) + "</small></div>";
+    if (m.t === "email") return '<div class="mat email"><h6>' + esc(m.h) + '</h6><div class="from"><i>' + esc(m.i) + "</i>" + esc(m.from) + "</div><p>" + esc(m.p) + "</p></div>";
+    return '<div class="mat fact"><h6>' + esc(m.h) + "</h6><p>" + esc(m.p) + "</p></div>";
+  }
+  function show(id) {
+    current = id;
+    var c = CASES[id];
+    casesEl.querySelectorAll(".case").forEach(function (b) { b.setAttribute("aria-selected", b.dataset.id === id ? "true" : "false"); });
+    document.getElementById("cfHead").innerHTML = "<div><small>Case " + c.n + " of 3 · " + esc(c.meta) + "</small><h2>" + esc(c.customer) + ": " + esc(c.title) + '</h2></div><span class="chip ' + c.chip[1] + '">' + c.chip[0] + "</span>";
+    document.getElementById("mats").innerHTML = c.mats.map(mat).join("");
+    document.getElementById("question").innerHTML = "<i>?</i>" + esc(c.q);
+  }
+  var startId = (location.hash || "").replace("#", "");
+  show(CASES[startId] ? startId : "stalled");
+
+  // Anonymous visitor id kept in this browser (used only for the 3-review cap)
+  var vid = null;
+  try { vid = localStorage.getItem("handover_vid"); } catch (e) {}
+  if (!vid) {
+    vid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ("v-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 12));
+    try { localStorage.setItem("handover_vid", vid); } catch (e) {}
+  }
+  var leftEl = document.getElementById("left");
+  function setLeft(n) { leftEl.textContent = n <= 0 ? "No free reviews left" : (n === 1 ? "1 free review left" : n + " free reviews left"); }
+  try { var saved = localStorage.getItem("handover_left"); if (saved !== null) setLeft(+saved); } catch (e) {}
+
+  var ta = document.getElementById("answer"), count = document.getElementById("count");
+  ta.addEventListener("input", function () {
+    var n = ta.value.trim().length;
+    count.textContent = n.toLocaleString("en-IN") + " / 1,200 characters";
+    count.className = n > 1200 ? "over" : "";
+  });
+
+  var toast = document.getElementById("toast"), tt;
+  function say(t) { toast.textContent = t; toast.classList.add("show"); clearTimeout(tt); tt = setTimeout(function () { toast.classList.remove("show"); }, 2200); }
+  document.getElementById("share").addEventListener("click", function () {
+    var url = location.origin + location.pathname + "#" + current;
+    var data = { title: "Try a HANDOVER case", text: "How would you handle this onboarding situation? Takes 2 minutes.", url: url };
+    if (navigator.share) { navigator.share(data).catch(function () {}); return; }
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { say("Link copied. Send it to someone on your support team."); }, function () { say(url); });
+    else say(url);
+  });
+
+  var fb = document.getElementById("fb"), btn = document.getElementById("submit");
+  var LABEL = { strong: ["Strong call", "c-good"], partial: ["Partly there", "c-warn"], missed: ["Missed the evidence", "c-bad"] };
+  function fail(m) { fb.innerHTML = '<div class="msg err">' + esc(m) + "</div>"; }
+  function render(d, ms) {
+    if (d.refused) { fb.innerHTML = '<div class="msg">' + esc(d.message) + "</div>"; return; }
+    var v = LABEL[d.verdict] || LABEL.partial;
+    fb.innerHTML =
+      '<div class="fb-top"><span class="chip ' + v[1] + '">' + v[0] + "</span><small>Reviewed in " + (ms / 1000).toFixed(1) + "s</small></div>" +
+      "<h3>" + esc(d.headline) + "</h3>" +
+      '<div class="blk b-good"><small>What worked</small><p>' + esc(d.what_worked) + "</p></div>" +
+      '<div class="blk b-miss"><small>What you missed</small><p>' + esc(d.what_you_missed) + "</p></div>" +
+      '<div class="blk b-lead"><small>What an experienced onboarding lead would do first</small><p>' + esc(d.lead_would_do) + "</p></div>" +
+      '<div class="fb-foot"><span class="chip c-brand">Focus skill: ' + esc(d.focus_skill) + '</span><a href="index.html#apply">Get this for your team</a></div>';
+  }
+
+  document.getElementById("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var answer = ta.value.trim();
+    if (answer.length < 30) { fail("Tell us a bit more: at least 30 characters on what you’d do and why."); ta.focus(); return; }
+    if (answer.length > 1200) { fail("Keep it under 1,200 characters. Focus on your first move and why."); ta.focus(); return; }
+    btn.disabled = true; btn.textContent = "Reviewing…";
+    fb.innerHTML = '<div class="skel" aria-label="Loading"><i style="width:30%"></i><i style="width:90%;height:18px"></i><i></i><i style="width:85%"></i><i></i><i style="width:70%"></i></div>';
+    var t0 = performance.now();
+    fetch("/api/feedback", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ scenario: current, background: document.getElementById("background").value, experience: document.getElementById("experience").value, answer: answer, visitorId: vid })
+    }).then(function (r) {
+      return r.json().catch(function () { return { error: "The feedback service isn’t available here. Try it on the live site." }; }).then(function (d) { return { s: r.status, d: d }; });
+    }).then(function (x) {
+      if (typeof x.d.remaining === "number") { setLeft(x.d.remaining); try { localStorage.setItem("handover_left", x.d.remaining); } catch (e) {} }
+      if (x.s === 200 && x.d.ok) { render(x.d, performance.now() - t0); loadStats(); if (window.innerWidth < 1180) fb.scrollIntoView({ behavior: "smooth", block: "start" }); }
+      else fail(x.d.error || "Something went wrong. Please try again.");
+    }).catch(function () { fail("We couldn’t reach the feedback service. Check your connection and try again."); })
+      .then(function () { btn.disabled = false; btn.textContent = "Get feedback on my call"; });
+  });
+
+  function loadStats() {
+    fetch("/api/stats").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (s) {
+      document.getElementById("sTotal").textContent = (s.total || 0).toLocaleString("en-IN");
+      document.getElementById("sStrong").textContent = s.total ? s.strongShare + "%" : "–";
+      var bars = document.getElementById("sBars");
+      if (!s.topFocus || !s.topFocus.length) { bars.innerHTML = '<span style="font-size:13px;color:var(--faint)">No reviews this week yet. Be the first.</span>'; return; }
+      var max = s.topFocus[0].count;
+      bars.innerHTML = s.topFocus.map(function (f) { return '<div class="fbar"><span>' + esc(f.skill) + "</span><b>" + f.count + '</b><span class="t"><i style="width:' + Math.max(6, Math.round(f.count / max * 100)) + '%"></i></span></div>'; }).join("");
+    }).catch(function () { document.getElementById("sBars").innerHTML = '<span style="font-size:13px;color:var(--faint)">Live numbers appear on the deployed site.</span>'; });
+  }
+  loadStats();
+})();
+</script>
+</body>
+</html>
