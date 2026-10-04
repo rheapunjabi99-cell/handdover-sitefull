@@ -657,7 +657,9 @@ footer .brand { color: #fff; }
 @media (max-width: 480px) { .pb-nums { grid-template-columns: 1fr 1fr; } .pb-nums div:last-child { grid-column: 1 / -1; } }
 
 /* ===== Testimonials ===== */
-.tst-grid { display: grid; grid-template-columns: 1.25fr 1fr 1fr; grid-template-rows: auto auto; gap: 18px; }
+.tst-grid { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr) minmax(0,1fr); grid-template-rows: auto auto; gap: 18px; }
+.tst-grid > * { min-width: 0; }
+.tst-top { flex-wrap: wrap; }
 .tst-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .tst { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 26px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 18px; }
 .tst.feature { grid-row: span 2; background: var(--navy); color: #fff; border: 0; position: relative; overflow: hidden; }
@@ -677,7 +679,7 @@ footer .brand { color: #fff; }
 .tst.feature .co { color: rgba(255,255,255,.85); }
 .co i { width: 20px; height: 20px; border-radius: 6px; display: block; }
 .tst-note { text-align: center; margin: 22px 0 0; font-size: .82rem; color: var(--muted); }
-@media (max-width: 960px) { .tst-grid { grid-template-columns: 1fr 1fr; } .tst.feature { grid-column: span 2; grid-row: auto; } }
+@media (max-width: 960px) { .tst-grid { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } .tst.feature { grid-column: span 2; grid-row: auto; } }
 @media (max-width: 620px) { .tst-grid { grid-template-columns: 1fr; } .tst.feature { grid-column: auto; } }
 .note-wrap > div:first-child { position: sticky; top: 110px; }
 @media (max-width: 880px) { .note-wrap > div:first-child { position: static; } }
@@ -1207,7 +1209,7 @@ footer .brand { color: #fff; }
       </figure>
       <figure class="tst">
         <div class="tst-top"><span class="stars" aria-label="5 out of 5"></span><span style="font-size:.72rem;font-weight:700;opacity:.7">Illustrative</span><span class="co"><i style="background:linear-gradient(135deg,#0EA88D,#2F8CFF)"></i>Ledgerloop</span></div>
-        <blockquote>“Paying only when someone actually moves into the role made it an easy conversation with our finance team.”</blockquote>
+        <blockquote>“Tying the main fee to people actually moving into the role made it an easy conversation with our finance team.”</blockquote>
         <figcaption class="tst-who"><span class="tst-photo" data-face="#8E5A3C,#0F0B09,#0EA88D,#DDF6F0,bun"></span><div><b>Sneha Iyer</b><small>VP Customer Experience, Ledgerloop</small></div></figcaption>
       </figure>
       <figure class="tst">
